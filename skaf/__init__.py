@@ -11,23 +11,23 @@ from pyramid.config import Configurator
 from skaf.db import init_sqlalchemy
 from skaf.lib.factories.root import RootFactory
 
-VERSION = pkg_resources.require('skaf')[0].version
+# VERSION = pkg_resources.require('skaf')[0].version
 
 
-def main(global_config, **settings):
+def main(global_config, **settings): 
     settings = configure_for_environment(settings)
     init_sqlalchemy()
 
-    authentication_policy = DefaultAuthenticationPolicy(
-        secret=decrypt_secret(settings['auth.secret'],
-                              settings['aes.key'],
-                              settings['aes.iv']),
-        timeout=settings.get('auth.timeout'),
-        reissue_time=settings.get('auth.reissue_time'),
-        callback=get_principals,
-        hashalg='sha512',
-        parent_domain=True
-    )
+    # authentication_policy = DefaultAuthenticationPolicy(
+    #     secret=decrypt_secret(settings['auth.secret'],
+    #                           settings['aes.key'],
+    #                           settings['aes.iv']),
+    #     timeout=settings.get('auth.timeout'),
+    #     reissue_time=settings.get('auth.reissue_time'),
+    #     callback=get_principals,
+    #     hashalg='sha512',
+    #     parent_domain=True
+    # )
 
     config = Configurator(
         settings=settings,
