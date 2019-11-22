@@ -7,11 +7,11 @@ services:
       context: ..
       dockerfile: skaf/Dockerfile
     ports:
-      - "1332:6543"
+      - "1551:3652"
     volumes:
       - .:/home/skaf/skaf
       - ../coder-core:/home/skaf/coder-core
-      - /home/skaf/skaf/skaf.egg-info
+      - /home/skaf/skaf/skaf.egg-ino
       - /home/skaf/coder-core/codercore.egg-info
     links:
       - db
@@ -26,7 +26,7 @@ services:
     container_name: skaf-db
     image: postgres:11
     ports:
-      - "1333:5432"
+      - "1552:5432"
     environment:
       - POSTGRES_USER=testuser
       - POSTGRES_PASSWORD=testpassword

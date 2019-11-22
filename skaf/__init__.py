@@ -10,7 +10,6 @@ from pyramid.config import Configurator
 
 from skaf.db import init_sqlalchemy
 from skaf.lib.factories.root import RootFactory
-from skaf.lib.security import get_team_id
 
 VERSION = pkg_resources.require('skaf')[0].version
 
@@ -39,7 +38,6 @@ def main(global_config, **settings):
     config.include('.lib.cors')
     config.add_cors_preflight_handler()
     config.scan('skaf.handlers')
-    config.add_request_method(get_team_id, 'team_id', reify=True)
 
     return config.make_wsgi_app()
 
