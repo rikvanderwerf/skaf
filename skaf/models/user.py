@@ -23,6 +23,14 @@ class User(Base):
             # When data is None AttributeError will be raised
             return
 
+    class ThirdPartyIntegration(Base, EndpointBase, LineageBase):
+    __tablename__ = 'third_party_integration'
+    __search_fields__ = ('third_party_id')
 
-def get_user_by_id(id_):
-    return session.query(User).get(id_)
+    id = Column(UUID, primary_key=True, default=uuid.uuid4)
+    third_party_id = Column(String(200), unique=True)
+    provider = Column(Enum('Facebook', name='third_party_provider'),
+                      primary_key=True)
+    user_id = Column(UUID, ForeignKey('user.id'))
+
+    user = relationship('User', back_populates='third_party_integrations')
