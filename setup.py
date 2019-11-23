@@ -8,8 +8,8 @@ with open(os.path.join(here, 'VERSION')) as f:
 
 
 requires = [
-    'alembic',
     'codercore',
+    'alembic',
     'marshmallow',
     'pyramid',
     'requests',

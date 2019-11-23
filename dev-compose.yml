@@ -7,12 +7,12 @@ services:
       context: ..
       dockerfile: skaf/Dockerfile
     ports:
-      - "1551:3652"
+      - "1551:6543"
     volumes:
       - .:/home/skaf/skaf
-      - ../coder-core:/home/skaf/coder-core
-      - /home/skaf/skaf/skaf.egg-ino
-      - /home/skaf/coder-core/codercore.egg-info
+      # - ../coder-core:/home/skaf/coder-core
+      # # - /home/skaf/skaf/skaf.egg-ino
+      # # - /home/skaf/coder-core/codercore.egg-info
     links:
       - db
     depends_on:

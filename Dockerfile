@@ -14,5 +14,5 @@ RUN pip install -e skaf
 
 USER skaf
 
-EXPOSE 3652
+EXPOSE 6543
 CMD ["pserve", "--reload", "skaf/develop.ini"]
