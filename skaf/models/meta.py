@@ -13,7 +13,7 @@ from sqlalchemy.sql import false
 from sqlalchemy.sql.expression import text
 from zope.sqlalchemy import register
 
-from invytecore.lib.vault import Vault
+# from skaf.lib.vault import Vault
 
 DBSession = session
 Base = CoderBase

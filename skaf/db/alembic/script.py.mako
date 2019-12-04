@@ -1,3 +1,4 @@
+import codercore
 import sqlalchemy as sa
 from alembic import context, op
 

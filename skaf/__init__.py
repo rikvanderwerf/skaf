@@ -10,6 +10,7 @@ from pyramid.config import Configurator
 
 from skaf.db import init_sqlalchemy
 from skaf.lib.factories.root import RootFactory
+from skaf.lib.security import get_authenticated_user, get_third_party_id
 
 VERSION = pkg_resources.require('skaf')[0].version
 
@@ -36,7 +37,12 @@ def main(global_config, **settings):
         root_factory=RootFactory
     )
     config.scan('skaf.handlers')
-
+    config.add_request_method('get_third_party_id', 'third_party_id', 
+                              reify=True)
+    config.add_request_method('get_authenticated_user', 'user', reify=True)
+    config.add_request_method(
+        lambda request: get_authenticated_user(request).id,
+        'user_id', reify=True)
     return config.make_wsgi_app()
 
 
