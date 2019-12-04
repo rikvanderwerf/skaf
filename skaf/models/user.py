@@ -12,8 +12,8 @@ class User(Base):
     firstname = Column(String(64), nullable=False)
     lastname = Column(String(64), nullable=False)
     
-        def __acl__(self):
-        return ((Allow, f"user:{self.id}", 'user.get'),)
+    def __acl__(self):
+         return ((Allow, f"user:{self.id}", 'user.get'),)
 
     def set_fields(self, data=None):
         try:

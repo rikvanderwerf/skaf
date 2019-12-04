@@ -12,7 +12,7 @@ services:
       - .:/home/skaf/skaf
       # - ../coder-core:/home/skaf/coder-core
       # # - /home/skaf/skaf/skaf.egg-ino
-      # # - /home/skaf/coder-core/codercore.egg-info
+      - /home/skaf/coder-core/codercore.egg-info
     links:
       - db
     depends_on:
