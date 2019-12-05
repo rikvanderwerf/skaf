@@ -37,9 +37,9 @@ def main(global_config, **settings):
         root_factory=RootFactory
     )
     config.scan('skaf.handlers')
-    config.add_request_method('get_third_party_id', 'third_party_id', 
+    config.add_request_method(get_third_party_id, 'third_party_id', 
                               reify=True)
-    config.add_request_method('get_authenticated_user', 'user', reify=True)
+    config.add_request_method(get_authenticated_user, 'user', reify=True)
     config.add_request_method(
         lambda request: get_authenticated_user(request).id,
         'user_id', reify=True)

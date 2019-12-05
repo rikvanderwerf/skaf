@@ -47,3 +47,6 @@ def get_user_by_third_party_id(third_party_id, provider):
         and_(ThirdPartyIntegration.third_party_id == third_party_id,
              cast(ThirdPartyIntegration.provider, String()) == provider)
     )
+
+def get_user_by_email(email):
+    return session.query(User).where(User.email == email)
