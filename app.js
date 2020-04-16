@@ -37,15 +37,15 @@ var schema = buildSchema(`
 
 var rootResolver = {
 	retailers: () => {
-		return ['skafshop']; 
+		return retailers; 
 	},
 	createRetailer: (args) => {
 		const retailer = {
 			id: uuid(),
-			name: args.title
-		}
-		const retailerName = args.name;
-		return retailerName
+			name: args.name
+		};
+		retailers.push(retailer);
+		return retailer;
 	}
 }
 
