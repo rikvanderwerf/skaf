@@ -3,7 +3,7 @@ import uuid
 from codercore.db import Base, DBSession as session
 from codercore.db.models.user import BaseUser
 from codercore.db.type import UUID
-from pyramid.security import Allow
+# from pyramid.security import Allow
 from sqlalchemy import (Column, String, Integer, UniqueConstraint, 
     ForeignKey, Enum, cast, and_)
 from sqlalchemy.orm import relationship
@@ -34,11 +34,6 @@ class User(BaseUser):
     password_salt = Column(String(29), nullable=False)
     date_created = Column(DateTime, default=datetime.datetime.utcnow,
                           nullable=False)
-
-
-
-    def __acl__(self):
-         return ((Allow, f"user:{self.id}", 'user.get'),)
 
     def set_fields(self, data=None):
         try:

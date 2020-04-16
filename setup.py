@@ -9,10 +9,12 @@ with open(os.path.join(here, 'VERSION')) as f:
 
 requires = [
     'alembic',
-    'graphene==2.0'
-    'graphene-sqlalchemy==2.0',
+    'graphene-sqlalchemy',
+    'flask-graphql',
     'hvac',
+    'psycopg2',
     'requests',
+    'sqlalchemy',
     'waitress'
 ]
 
