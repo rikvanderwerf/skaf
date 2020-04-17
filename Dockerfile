@@ -8,7 +8,8 @@ RUN apt-get install -y postgresql-client
 COPY package*.json ./
 RUN npm install
 
-COPY . .
+COPY . /home/skaf
+WORKDIR /home/skaf
 
 EXPOSE 4000
 CMD ["npm", "start"]

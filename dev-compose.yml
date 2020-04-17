@@ -14,7 +14,7 @@ services:
       POSTGRES_PASSWORD: password
     ports:
       - "4000:4000"
-    volumes:
+    volumes:    
       - .:/home/skaf
     command: ["./wait-for-it.sh", "npm", "start"] 
     networks: 
