@@ -9,13 +9,11 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
-      POSTGRES_HOST: postgresql
+      POSTGRES_HOST: postgresql_db
       POSTGRES_USER: login_role
       POSTGRES_PASSWORD: password
     ports:
       - "4000:4000"
-    links: 
-      - postgresql_db:postgresql
     volumes:
       - .:/home/skaf
     command: ["./wait-for-it.sh", "npm", "start"] 
