@@ -42,9 +42,10 @@ var rootResolver = {
 	createRetailer: (args) => {
 		const retailer = {
 			id: uuid(),
-			name: args.name
+			name: args.retailerInput.name
 		};
 		retailers.push(retailer);
+		console.log(retailer);
 		return retailer;
 	}
 }
