@@ -2,13 +2,10 @@ const express = require('express')
 const graphqlHTTP = require('express-graphql');
 
 const { buildSchema } = require('graphql')
-const { v4 } = require('uuid');
 const { sequelize } = require('./database/database.js');
-const { listRetailers, Retailer } = require('./models/retailer.js');
-const uuid = v4
+const Retailer = require('./models/retailer.js');
 
 const app = express();
-const retailers = [];
 
 app.use(express.json())
 sequelize.sync()
@@ -39,14 +36,14 @@ var schema = buildSchema(`
 
 var rootResolver = {
 	retailers: () => {
-		return retailers 
+		return retailer.listRetailers 
 	},
 	createRetailer: (args) => {
-		const retailer = {
-			id: uuid(),
-			name: args.retailerInput.name
-		}
-		retailers.push(retailer);
+		console.log(Retailer)
+		// const retailer = {
+		// 	name: args.retailerInput.name
+		// }
+		Retailer.create(args.retailerInput)
 		return retailer
 	}
 }
