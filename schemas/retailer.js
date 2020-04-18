@@ -11,15 +11,28 @@ const retailerSchema = `
 	}
 `
 
+function handleDatabaseQueryPromise(promise) {
+	return promise
+		.then(result => {
+			return result 
+		}).catch(err => {
+			throw err
+		})
+}
+
 const retailerResolver = {
 	rootQuery: {
 		retailers: (_, args) => {
-			return retailer.list(args.retailerInput)
+			return handleDatabaseQueryPromise(
+				retailer.list(args.retailerInput)
+			)
 		}
 	},
 	rootMutation: {
 		createRetailer: (_, args) => {
-			return retailer.create(args.retailerInput)
+			return handleDatabaseQueryPromise(
+				retailer.create(args.retailerInput)
+			)
 		}
 	}
 }
