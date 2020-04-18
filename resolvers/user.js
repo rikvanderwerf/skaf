@@ -5,7 +5,7 @@ const { handleDatabaseQueryPromise } = require('./resolver.js')
 const userResolver = {
 	rootMutation: {
 		createUser: (_, args) => {
-			bcrypt.hash(args.userInput.password, 12)
+			return bcrypt.hash(args.userInput.password, 12)
 				.then(password => {
 					args.userInput.password = password
 					return handleDatabaseQueryPromise(
