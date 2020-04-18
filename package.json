@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/rikvanderwerf/skaf#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "eslint-plugin-prettier": "^3.1.3",
     "express": "^4.17.1",
     "express-graphql": "^0.9.0",
