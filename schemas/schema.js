@@ -1,3 +1,5 @@
+const { authSchema } = require('./auth.js')
+const { authResolver } = require('../resolvers/auth.js')
 const { makeExecutableSchema } = require('graphql-tools')
 const { retailerSchema } = require('./retailer.js')
 const { retailerResolver } = require('../resolvers/retailer.js')
@@ -7,6 +9,7 @@ const { userResolver } = require('../resolvers/user.js')
 const rootQuery = `
 	type rootQuery {
 		retailers(retailerInput: RetailerInput): [Retailer!]!
+		login(authInput: AuthInput): Auth
 	}
 `
 
@@ -26,8 +29,19 @@ const rootSchema = `
 
 
 const schema = makeExecutableSchema({	
-	typeDefs: [rootSchema, retailerSchema, rootQuery, rootMutation, userSchema],
-	resolvers: [retailerResolver, userResolver]
+	typeDefs: [
+		authSchema,
+		retailerSchema, 
+		rootMutation, 
+		rootQuery, 
+		rootSchema, 
+		userSchema
+	],
+	resolvers: [
+		authResolver,
+		retailerResolver, 
+		userResolver
+	]
 })
 
 module.exports = schema
