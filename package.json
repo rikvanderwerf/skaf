@@ -18,16 +18,20 @@
   },
   "homepage": "https://github.com/rikvanderwerf/skaf#readme",
   "dependencies": {
+    "eslint-plugin-prettier": "^3.1.3",
     "express": "^4.17.1",
     "express-graphql": "^0.9.0",
     "graphql": "^15.0.0",
     "graphql-tools": "^5.0.0",
     "pg": "^8.0.2",
     "pg-hstore": "^2.3.3",
+    "prettier": "^2.0.4",
     "sequelize": "^5.21.6",
     "uuid": "^7.0.3"
   },
   "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.1",
     "nodemon": "^2.0.3"
   }
 }
