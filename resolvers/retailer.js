@@ -6,7 +6,7 @@ const retailerResolver = {
 		retailers: (_, args) => {
 			return handleDatabaseQueryPromise(
 				retailer.list(args.retailerInput)
-			)
+			) || []
 		}
 	},
 	rootMutation: {
