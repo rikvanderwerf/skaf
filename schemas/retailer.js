@@ -13,18 +13,14 @@ const retailerSchema = `
 
 const retailerResolver = {
 	rootQuery: {
-		retailers: (args) => {
+		retailers: () => {
 			return retailer.list()
 		}
 	},
 	rootMutation: {
-//		createRetailer: (args) => {
-//			console.log(retailer.create)
-			// const retailer = {
-			// 	name: args.retailerInput.name
-			// }
-//			return retailer.create(args.retailerInput)
-	//	}
+		createRetailer: (_, args) => {
+			return retailer.create(args.retailerInput)
+		}
 	}
 }
 

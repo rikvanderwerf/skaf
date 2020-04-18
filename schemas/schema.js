@@ -3,7 +3,7 @@ const { retailerSchema, retailerResolver } = require('./retailer.js')
 
 const rootQuery = `
 	type rootQuery {
-		retailers: [Retailer!]!
+		retailers(retailerInput: RetailerInput): [Retailer!]!
 	}
 `
 
