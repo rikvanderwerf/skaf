@@ -1,5 +1,6 @@
 const { makeExecutableSchema } = require('graphql-tools')
-const { retailerSchema, retailerResolver } = require('./retailer.js')
+const { retailerSchema } = require('./retailer.js')
+const { retailerResolver } = require('../resolvers/retailer.js')
 
 const rootQuery = `
 	type rootQuery {
@@ -27,6 +28,3 @@ const schema = makeExecutableSchema({
 })
 
 module.exports = schema
-
-
-
