@@ -2,16 +2,7 @@ const { Model, DataTypes} = require('sequelize');
 
 const { sequelize } = require('../database/database.js');
 
-// const listRetailers = function() {
-// 	return Retailer.findAll()
-// }
-
-// const createRetailer = (args) => {
-// 	Retailer.create(args)	
-// }
-
-module.export = (sequelize, DataTypes) => {
-	var User = sequelize.define('user', {
+var Retailer = sequelize.define('Retailer', {
 		id: {
 			primaryKey: true,
 			type: DataTypes.UUID,
@@ -22,5 +13,14 @@ module.export = (sequelize, DataTypes) => {
 			allowNull: false
 		 }
 	})
-	return User
+
+function list() {
+	console.log(Retailer.findAll())
+	return Retailer.findAll()
 }
+
+function create(args) {
+    return Retailer.create(args)	
+}
+
+module.exports = { list, create }

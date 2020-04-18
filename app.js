@@ -3,7 +3,7 @@ const graphqlHTTP = require('express-graphql');
 
 const { buildSchema } = require('graphql')
 const { sequelize } = require('./database/database.js');
-const Retailer = require('./models/retailer.js');
+const retailer = require('./models/retailer.js');
 
 const app = express();
 
@@ -35,16 +35,15 @@ var schema = buildSchema(`
 `)
 
 var rootResolver = {
-	retailers: () => {
-		return retailer.listRetailers 
+	retailers: (args) => {
+		return retailer.list()
 	},
 	createRetailer: (args) => {
-		console.log(Retailer)
+		console.log(retailer.create)
 		// const retailer = {
 		// 	name: args.retailerInput.name
 		// }
-		Retailer.create(args.retailerInput)
-		return retailer
+		return retailer.create(args.retailerInput)
 	}
 }
 
