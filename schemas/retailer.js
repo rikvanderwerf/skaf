@@ -13,8 +13,8 @@ const retailerSchema = `
 
 const retailerResolver = {
 	rootQuery: {
-		retailers: () => {
-			return retailer.list()
+		retailers: (_, args) => {
+			return retailer.list(args.retailerInput)
 		}
 	},
 	rootMutation: {

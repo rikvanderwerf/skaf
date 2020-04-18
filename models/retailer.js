@@ -14,9 +14,13 @@ var Retailer = sequelize.define('Retailer', {
 		 }
 	})
 
-function list() {
-	console.log(Retailer.findAll())
-	return Retailer.findAll()
+function list(retailerInput) {
+	console.log(retailerInput.name)
+	return Retailer.findAll({
+		where: {
+			name: retailerInput.name
+		}
+	})
 }
 
 function create(args) {
