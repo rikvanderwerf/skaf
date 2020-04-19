@@ -10,7 +10,11 @@ const retailerResolver = {
 		}
 	},
 	rootMutation: {
-		createRetailer: (_, args) => {
+		createRetailer: (obj, args, context, info) => {
+			console.log(obj)	
+			console.log(context)
+			console.log(info)
+			console.log(obj)
 			return handleDatabaseQueryPromise(
 				retailer.create(args.retailerInput)
 			)
