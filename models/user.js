@@ -29,4 +29,10 @@ function create(args) {
 	return User.create(args)	
 }
 
-module.exports = { create }
+function findUser(userFields) {
+	return User.findOne({
+		where: userFields 
+	})
+}
+
+module.exports = { create, findUser }
