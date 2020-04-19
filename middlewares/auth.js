@@ -5,7 +5,7 @@ function setAuthenticatedToFalse(request, next) {
     return next()
 }
 
-module.exports = (request, response, next) => {
+module.exports = (request, _, next) => {
     const authHeader = request.get('Authorization')
     if (!authHeader) {
         return setAuthenticatedToFalse(request, next)
@@ -23,5 +23,4 @@ module.exports = (request, response, next) => {
     request.isAuthenticated = true
     request.userId = decodedToken.userId
     next()
-  }
- jwt 
+}
