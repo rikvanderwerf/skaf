@@ -26,9 +26,7 @@ async function login(_, args) {
 }
 
 const authResolver = {
-	rootQuery: {
-		login: login 	
-	}
+	login: login 	
 }
 
 module.exports = { authResolver }

@@ -1,24 +1,15 @@
-const retailer = require('../models/retailer.js')
-const { handleDatabaseQueryPromise } = require('./resolver.js')
+const Retailer = require('../models/retailer.js')
+const { UnAuthenticatedError } = require('../lib/errors')
 
 const retailerResolver = {
-	rootQuery: {
-		retailers: (_, args) => {
-			return handleDatabaseQueryPromise(
-				retailer.list(args.retailerInput)
-			) || []
-		}
+	retailers: async (args) => {
+		return await Retailer.list(args.retailerInput) || []
 	},
-	rootMutation: {
-		createRetailer: (obj, args, context, info) => {
-			console.log(obj)	
-			console.log(context)
-			console.log(info)
-			console.log(obj)
-			return handleDatabaseQueryPromise(
-				retailer.create(args.retailerInput)
-			)
+	createRetailer: async (args, request) => {
+		if (!request.isAuthenticated) {
+			throw UnAuthenticatedError
 		}
+		return await retailer.create(args.retailerInput)
 	}
 }
 

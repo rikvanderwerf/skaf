@@ -1,15 +1,11 @@
-function handleDatabaseQueryPromise(promise) {
-	return promise
-		.then(result => {
-			return result 
-		}).catch(err => {
-			throw err
-		})
+const { authResolver } = require('../resolvers/auth.js')
+const { retailerResolver } = require('../resolvers/retailer.js')
+const { userResolver } = require('../resolvers/user.js')
+
+const rootResolver = {
+	...authResolver,
+	...retailerResolver,
+	...userResolver
 }
 
-module.exports = { handleDatabaseQueryPromise }
-
-
-
-
-
+exports.rootResolver = rootResolver

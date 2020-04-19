@@ -1,10 +1,8 @@
 const { authSchema } = require('./auth.js')
-const { authResolver } = require('../resolvers/auth.js')
-const { makeExecutableSchema } = require('graphql-tools')
+const { buildSchema } = require('graphql');
 const { retailerSchema } = require('./retailer.js')
-const { retailerResolver } = require('../resolvers/retailer.js')
 const { userSchema } = require('./user.js')
-const { userResolver } = require('../resolvers/user.js')
+
 
 const rootQuery = `
 	type rootQuery {
@@ -27,21 +25,15 @@ const rootSchema = `
 	}
 `
 
-
-const schema = makeExecutableSchema({	
-	typeDefs: [
+function concatSchemas() {
+	return schema = [
 		authSchema,
 		retailerSchema, 
 		rootMutation, 
 		rootQuery, 
 		rootSchema, 
 		userSchema
-	],
-	resolvers: [
-		authResolver,
-		retailerResolver, 
-		userResolver
-	]
-})
+	].join(' ')
+}
 
-module.exports = schema
+module.exports = buildSchema(concatSchemas())
