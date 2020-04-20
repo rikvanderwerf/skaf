@@ -2,7 +2,7 @@ const { Model, DataTypes} = require('sequelize');
 const { sequelize } = require('../database/database.js');
 const { User } = require('./user.js')
 
-var Retailer = sequelize.define('retailer', {
+const Retailer = sequelize.define('retailer', {
 		id: {
 			primaryKey: true,
 			type: DataTypes.UUID,

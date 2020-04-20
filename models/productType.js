@@ -1,7 +1,7 @@
 const { DataTypes} = require('sequelize');
 const { sequelize } = require('../../database/database.js')
 
-var ProductType = sequelize.define('ProductType', {
+const ProductType = sequelize.define('productType', {
     id: {
         primaryKey: true,
         type: DataTypes.UUID,
@@ -18,3 +18,5 @@ ProductType.hasMany(ProductType, {
     as: 'child_products',
     foreignKey: 'product_type_parent_id'
 })
+
+exports.ProductType = ProductType

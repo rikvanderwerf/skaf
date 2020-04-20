@@ -2,7 +2,7 @@ const { DataTypes} = require('sequelize');
 const { Retailer } = require('./retailer.js')
 const { sequelize } = require('../database/database.js');
 
-var User = sequelize.define('User', {
+const User = sequelize.define('User', {
 	id: {
 		primaryKey: true,
 		type: DataTypes.UUID,
@@ -12,6 +12,7 @@ var User = sequelize.define('User', {
 		type: DataTypes.STRING,
 		allowNull: false,
 		unique: true, 
+		required: true, 
 		validate: {
 			isEmail: true
 		}
@@ -19,6 +20,7 @@ var User = sequelize.define('User', {
 	password: {
 		type: DataTypes.STRING,
 		allowNull: false,
+		required: true, 
 		validate: {
 			min: 8
 		}
