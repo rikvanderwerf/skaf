@@ -1,6 +1,6 @@
 const { Model, DataTypes} = require('sequelize');
-
 const { sequelize } = require('../database/database.js');
+const { User } = require('./user.js')
 
 var Retailer = sequelize.define('retailer', {
 		id: {
@@ -10,21 +10,28 @@ var Retailer = sequelize.define('retailer', {
 		}, 	
 		name: {
 			type: DataTypes.STRING,
+			required: true, 
 			allowNull: false
 		},
+		// created_by_user_id: {
+		// 	type: DataTypes.UUID,
+		// 	allowNull: false,
+		// 	required: true
+		// }
+	}, {underscored: true})
 
-	})
+Retailer.belongsTo(User)
 
-function list(retailerInput) {
+function listRetailers(retailerInput) {
 	return Retailer.findAll({
-		where: {
-			name: retailerInput.name
-		}
+		where: retailerInput
 	})
 }
 
-function create(args) {
+function createRetailer(args) {
     return Retailer.create(args)	
 }
 
-module.exports = { list, create }
+exports.Retailer = Retailer
+exports.listRetailers = listRetailers
+exports.createRetailer = createRetailer
