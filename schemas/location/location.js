@@ -1,5 +1,5 @@
 const locationSchema = `
-    type location implements BaseSchema {
+    type Location implements BaseSchema {
         latitude: Float!
         longitude: Float!
         address: Address

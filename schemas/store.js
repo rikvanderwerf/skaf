@@ -10,4 +10,4 @@ const storeSchema = `
 	}
 `
 	
-module.exports = { storeSchema }
+exports.storeSchema = storeSchema
