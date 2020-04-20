@@ -1,8 +1,9 @@
-const { City } = require('./city.js')
+const { Catalog } = require('./catalog.js')
 const { DataTypes } = require('sequelize');
 const { sequelize } = require('../../database/database.js');
+const { Location } = require('./location/location.js')  
 
-const Location = sequelize.define('location', {
+const Store = sequelize.define('store', {
     id: {
 		primaryKey: true,
 		type: DataTypes.UUID,
@@ -18,8 +19,12 @@ const Location = sequelize.define('location', {
     }
 })
 
-Location.hasOne(City, {
-    foreignKey: "city_id"
+Location.hasOne(Location, {
+    foreignKey: 'location_id'
 })
 
-exports.Location = Location
+Location.hasOne(Catalog, {
+    foreignKey: 'catalog_id'
+})
+
+exports.Store = Store 

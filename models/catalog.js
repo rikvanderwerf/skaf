@@ -11,7 +11,7 @@ const Catalog = sequelize.define('catalog', {
 })
 
 Catalog.hasMany(Product, {
-    as: "products"
+    as: 'products'
 })
 
 exports.Catalog = Catalog

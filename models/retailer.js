@@ -1,4 +1,4 @@
-const { Model, DataTypes} = require('sequelize');
+const { DataTypes} = require('sequelize');
 const { sequelize } = require('../database/database.js');
 const { User } = require('./user.js')
 
@@ -12,12 +12,7 @@ const Retailer = sequelize.define('retailer', {
 			type: DataTypes.STRING,
 			required: true, 
 			allowNull: false
-		},
-		// created_by_user_id: {
-		// 	type: DataTypes.UUID,
-		// 	allowNull: false,
-		// 	required: true
-		// }
+		}
 	})
 
 function listRetailers(retailerInput) {
