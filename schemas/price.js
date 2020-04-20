@@ -4,7 +4,7 @@ const priceSchema = `
         currency: String!
     }
 
-    input priceInputType {
+    input priceInput {
         priceInCents: Int!
         currency: String!
     }

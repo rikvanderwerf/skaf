@@ -1,5 +1,8 @@
+const { addressSchema } = require('./location/address.js')
 const { authSchema } = require('./auth.js')
-const { buildSchema } = require('graphql');
+const { buildSchema } = require('graphql')
+const { catalogSchema } = require('./catalog.js')
+const { locationSchema } = require('./location/location.js')
 const { priceSchema } = require('./price.js')
 const { productSchema } = require('./product.js')
 const { productTypeSchema } = require('./productType.js')
@@ -39,8 +42,11 @@ const rootSchema = `
 
 function concatSchemas() {
 	return schema = [
+		addressSchema,
 		authSchema,
 		baseSchema,
+		catalogSchema,
+		locationSchema,
 		priceSchema,
 		productSchema,
 		productTypeSchema,

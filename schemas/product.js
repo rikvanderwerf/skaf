@@ -1,5 +1,5 @@
 const productSchema = `
-    type productSchema implements BaseSchema {
+    type Product implements BaseSchema {
         name: String!
         productType: ProductType!
     }

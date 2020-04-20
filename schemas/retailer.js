@@ -8,4 +8,4 @@ const retailerSchema = `
 	}
 `
 	
-module.exports = { retailerSchema }
+exports.retailerSchema = retailerSchema

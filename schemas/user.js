@@ -10,4 +10,4 @@ const userSchema = `
 	}
 `
 	
-module.exports = { userSchema }
+exports.userSchema = userSchema

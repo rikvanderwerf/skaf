@@ -1,6 +1,6 @@
 const catalogSchema = `
-    type catalogSchema implements BaseSchema {
-        products: [Products]!
+    type Catalog implements BaseSchema {
+        products: [Product]!
     }
 `;
 
