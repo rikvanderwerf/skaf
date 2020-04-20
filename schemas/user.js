@@ -1,6 +1,5 @@
 const userSchema = `
-	type User {
-		id: ID!
+	type User implements BaseSchema {
 		email: String!
 		password: String!
 	}
