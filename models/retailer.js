@@ -18,9 +18,7 @@ var Retailer = sequelize.define('retailer', {
 		// 	allowNull: false,
 		// 	required: true
 		// }
-	}, {underscored: true})
-
-Retailer.belongsTo(User)
+	})
 
 function listRetailers(retailerInput) {
 	return Retailer.findAll({

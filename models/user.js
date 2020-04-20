@@ -1,5 +1,5 @@
-const { Model, DataTypes} = require('sequelize');
-
+const { DataTypes} = require('sequelize');
+const { Retailer } = require('./retailer.js')
 const { sequelize } = require('../database/database.js');
 
 var User = sequelize.define('User', {
@@ -24,6 +24,8 @@ var User = sequelize.define('User', {
 		}
 	}
 }, {underscored: true})
+
+User.hasMany(Retailer, {as: "Retailers"})
 
 function createUser(args) {
 	return User.create(args)	
