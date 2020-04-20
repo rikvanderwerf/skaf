@@ -1,6 +1,5 @@
 const express = require('express')
 const graphqlHTTP = require('express-graphql');
-
 const { sequelize } = require('./database/database.js');
 const schema = require('./schemas/schema.js');
 

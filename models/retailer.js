@@ -2,7 +2,7 @@ const { Model, DataTypes} = require('sequelize');
 
 const { sequelize } = require('../database/database.js');
 
-var Retailer = sequelize.define('Retailer', {
+var Retailer = sequelize.define('retailer', {
 		id: {
 			primaryKey: true,
 			type: DataTypes.UUID,
@@ -11,7 +11,8 @@ var Retailer = sequelize.define('Retailer', {
 		name: {
 			type: DataTypes.STRING,
 			allowNull: false
-		 }
+		},
+
 	})
 
 function list(retailerInput) {
