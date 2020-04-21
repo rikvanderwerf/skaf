@@ -16,11 +16,14 @@ const Product = sequelize.define('product', {
     }
 })
 
-Product.hasOne(Price, {
+const ProductPrice = Product.hasOne(Price, {
     foreignKey: 'price_id'
 })
-Product.hasOne(ProductType, {
+
+const ProductProductType = Product.hasOne(ProductType, {
     foreignKey: 'product_type_id'
 })
 
 exports.Product = Product
+exports.ProductPrice = ProductPrice
+exports.ProductProductType = ProductProductType
