@@ -9,9 +9,9 @@ const { userResolver } = require('./user.js')
 const resolvers = [
 	authResolver,
 	catalogResolver,
-	// productResolver,
-	// productTypeResolver,
-	// retailerResolver,
+	productResolver,
+	productTypeResolver,
+	retailerResolver,
 	storeResolver,
 	userResolver
 ]
