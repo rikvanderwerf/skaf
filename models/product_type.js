@@ -14,8 +14,8 @@ const ProductType = sequelize.define('productType', {
     }
 })
 
-ProductType.hasMany(ProductType, { 
-    as: 'child_products',
+ProductType.belongsTo(ProductType, { 
+    as: 'parent',
     foreignKey: 'product_type_parent_id'
 })
 

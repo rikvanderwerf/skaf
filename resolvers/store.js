@@ -9,7 +9,7 @@ const retailerResolver = {
 		if (!request.isAuthenticated) {
 			throw UnAuthenticatedError
 		}
-		return await createStore(args.storeInput)
+        return await createStore(args.storeInput)
 	}
 }
 

@@ -13,4 +13,4 @@ const retailerResolver = {
 	}
 }
 
-module.exports = { retailerResolver }
+exports.retailerResolver = retailerResolver

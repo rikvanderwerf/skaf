@@ -19,11 +19,11 @@ const Store = sequelize.define('store', {
     }
 })
 
-Location.hasOne(Location, {
+const StoreLocation = Store.hasOne(Location, {
     foreignKey: 'location_id'
 })
 
-Location.hasOne(Catalog, {
+Store.hasOne(Catalog, {
     foreignKey: 'catalog_id'
 })
 
@@ -37,6 +37,8 @@ function createStore(args) {
     return Store.create(args)
 }
 
+exports.Catalog = Catalog
 exports.createStore = createStore
 exports.listStores = listStores
 exports.Store = Store 
+exports.StoreLocation = StoreLocation
