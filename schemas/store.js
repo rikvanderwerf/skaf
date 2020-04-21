@@ -11,7 +11,7 @@ const storeSchema = `
 	input storeInput {
         latitude: String!
 		longitude: String!
-		location: Location!
+		location: LocationInput!
 	}
 `
 	

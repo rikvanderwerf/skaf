@@ -9,7 +9,7 @@ const productSchema = `
 
     input ProductInput {
         name: String!
-        productType: ProductType
+        productType: ProductTypeInput 
     }
 `;
 

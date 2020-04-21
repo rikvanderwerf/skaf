@@ -7,7 +7,7 @@ const catalogSchema = `
     }
 
     input CatalogInput {
-        products: [Product]!
+        products: [ProductInput]!
     }
 `;
 

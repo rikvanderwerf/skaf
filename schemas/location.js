@@ -8,7 +8,7 @@ const locationSchema = `
         address: Address
     }
 
-    input locationInput {
+    input LocationInput {
         latitude: Float!
         longitude: Float!
     }
