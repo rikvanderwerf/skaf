@@ -29,7 +29,7 @@ function createProduct(productInput) {
 }
 
 function listProducts(productInput) {
-	return Product.find({
+	return Product.findAll({
 		where: productInput 
 	})	
 }

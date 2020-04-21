@@ -1,14 +1,12 @@
-const { listRetailers, createRetailer } = require('../models/retailer.js')
-
 const retailerResolver = {
 	Query: {
-		async retailers(parent, args, context, info) {
-			return await listRetailers(args.retailerInput) || []
+		async retailers(_, args, context) {
+			return await context.models.retailer.list(args.retailerInput) || []
 		}
 	},
 	Mutation: {	
-		async createRetailer(parent, args, context, info) {
-			return await createRetailer(args.retailerInput)
+		async createRetailer(_, args, context) {
+			return await context.models.retailer.create(args.retailerInput)
 		}
 	}
 }

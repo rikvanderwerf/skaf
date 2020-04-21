@@ -1,5 +1,3 @@
-const { listProducts, createProduct } = require('../models/product.js')
-
 const productResolver = {
 	Query: {
 		async products(_, args, context) {

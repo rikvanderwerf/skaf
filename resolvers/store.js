@@ -1,14 +1,12 @@
-const { listStores, createStore } = require('../models/store.js')
-
 const storeResolver = {
 	Query: {
-		async stores(parent, args, context, info) {
-			return await listStores(args.retailerInput) || []
+		async stores(_, args, context) {
+			return await context.models.store.list(args.retailerInput) || []
 		}
 	},
 	Mutation: {
-		async createStore(parent, args, context, info) {
-			return await createStore(args.storeInput)
+		async createStore(_, args, context) {
+			return await context.models.store.create(args.storeInput)
 		}
 	}
 }

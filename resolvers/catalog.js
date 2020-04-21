@@ -1,11 +1,7 @@
-const { NotFoundError } = require('../lib/errors.js')
-
 const catalogResolver = {
     Query: {
         async catalog(_, args, context) {
-            catalog = await context.models.catalog.get(args.catalogInput)
-            if (!catalog) { throw NotFoundError }
-            return catalog
+            return await context.models.catalog.get(args.catalogInput)
         }
     },
     Mutation: {

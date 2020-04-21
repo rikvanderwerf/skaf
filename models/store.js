@@ -24,18 +24,34 @@ Store.hasOne(Catalog, {
     foreignKey: 'catalog_id'
 })
 
-function listStores(storeInput) {
-    return Store.findALl({
+function createStore(storeInput) {
+    return Store.create(storeInput)
+}
+
+function getStore(storeInput) {
+    return Store.findOne({
         where: storeInput
     })
 }
 
-function createStore(args) {
-    return Store.create(args)
+function listStores(storeInput) {
+    return Store.findAll({
+        where: storeInput
+    })
 }
 
-exports.Catalog = Catalog
-exports.createStore = createStore
-exports.listStores = listStores
+const generateStoreModel = ({ user }) => ({
+    create: (storeInput) => {
+        createStore(storeInput)
+    },
+    get: (storeInput) => {
+        getStore(storeInput)
+    },
+    list: (storeInput) => {
+        listStores(storeInput)
+    }
+})
+
+exports.generateStoreModel = generateStoreModel
 exports.Store = Store 
 exports.StoreLocation = StoreLocation

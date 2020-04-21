@@ -33,29 +33,29 @@ function createUser(userInput) {
 	return User.create(userInput)	
 }
 
-function listUsers(userInput) {
-	return User.find({
-		where: userInput
-	})	
-}
-
 function getUser(userInput) {
 	return User.findOne({
 		where: userInput 
 	})
 }
 
+function listUsers(userInput) {
+	return User.findAll({
+		where: userInput
+	})	
+}
+
 const generateUserModel = ({ user }) => ({
-	list: (userInput) => {
-		listUsers(userInput) 
+	create: (userInput) => { 
+		createUser(userInput) 
 	},
 	get: (userInput) => { 
 		getUser(userInput) 
 	},
-	create: (userInput) => { 
-		createUser(userInput) 
+	list: (userInput) => {
+		listUsers(userInput) 
 	},
 })
 
-exports.User = User
 exports.generateUserModel = generateUserModel
+exports.User = User
