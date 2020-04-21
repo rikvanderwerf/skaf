@@ -1,8 +1,8 @@
-const { Model, DataTypes} = require('sequelize');
-
+const { DataTypes} = require('sequelize');
 const { sequelize } = require('../database/database.js');
+const { User } = require('./user.js')
 
-var Retailer = sequelize.define('Retailer', {
+const Retailer = sequelize.define('retailer', {
 		id: {
 			primaryKey: true,
 			type: DataTypes.UUID,
@@ -10,20 +10,23 @@ var Retailer = sequelize.define('Retailer', {
 		}, 	
 		name: {
 			type: DataTypes.STRING,
+			required: true, 
 			allowNull: false
-		 }
-	})
-
-function list(retailerInput) {
-	return Retailer.findAll({
-		where: {
-			name: retailerInput.name
 		}
 	})
-}
 
-function create(args) {
+
+function createRetailer(args) {
     return Retailer.create(args)	
 }
 
-module.exports = { list, create }
+function listRetailers(retailerInput) {
+	return Retailer.findAll({
+		where: retailerInput
+	})
+}
+
+
+exports.createRetailer = createRetailer
+exports.Retailer = Retailer
+exports.listRetailers = listRetailers

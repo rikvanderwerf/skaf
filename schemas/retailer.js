@@ -1,6 +1,5 @@
 const retailerSchema = `
-	type Retailer {
-		id: ID!
+	type Retailer implements BaseSchema {
 		name: String!
 	}
 
@@ -9,4 +8,4 @@ const retailerSchema = `
 	}
 `
 	
-module.exports = { retailerSchema }
+exports.retailerSchema = retailerSchema
