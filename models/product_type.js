@@ -19,4 +19,17 @@ ProductType.belongsTo(ProductType, {
     foreignKey: 'product_type_parent_id'
 })
 
+function listProductTypes(productTypeInput) {
+    return ProductType.find({
+        productTypeInput
+    })
+}
+
+const generateProductTypeModel = ({ user }) => {
+    list: (productTypeInput) => {
+        listProductTypes(productTypeInput)
+    }
+}
+
 exports.ProductType = ProductType
+exports.generateProductTypeModel = generateProductTypeModel

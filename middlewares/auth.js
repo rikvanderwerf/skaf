@@ -2,7 +2,7 @@ const { findUser } = require('../models/user.js')
 const jwt = require('jsonwebtoken')
 
 function getUserFromRequestIfLoggedIn(request) {
-    const authHeader = request.get('Authorization')
+const authHeader = request.get('Authorization')
     if (!authHeader) {
         return 
     }
@@ -19,4 +19,4 @@ function getUserFromRequestIfLoggedIn(request) {
     return findUser(decodedToken.userId)
 }
 
-exports.addUserToRequestIfLoggedIn = getUserFromRequestIfLoggedIn
+exports.getUserFromRequestIfLoggedIn = getUserFromRequestIfLoggedIn

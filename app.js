@@ -1,6 +1,7 @@
-const { addUserToRequestIfLoggedIn } = require('./middlewares/auth.js')
+const { getUserFromRequestIfLoggedIn } = require('./middlewares/auth.js')
 const { ApolloServer, gql } = require('apollo-server-express')
 const express = require('express')
+const { generateModels } = require('./models/models.js')
 const { resolvers } = require('./resolvers/resolver')
 const { sequelize } = require('./database/database.js')
 const { schema } = require('./schemas/schema.js')
@@ -15,7 +16,12 @@ const server = new ApolloServer({
     typeDefs: schema,
     resolvers,
     context: ({ req }) => {
-      { addUserToRequestIfLoggedIn(req) }
+      const user = getUserFromRequestIfLoggedIn(req)
+
+      return { 
+          user,
+          models: generateModels(user)
+      }
     }
 })
 server.applyMiddleware({ app })
