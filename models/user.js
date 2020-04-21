@@ -39,7 +39,7 @@ function listUsers(userInput) {
 	})	
 }
 
-function getUser(userInput1) {
+function getUser(userInput) {
 	return User.findOne({
 		where: userInput 
 	})
@@ -54,8 +54,8 @@ const generateUserModel = ({ user }) => ({
 	},
 	create: (userInput) => { 
 		createUser(userInput) 
-	}
-});
+	},
+})
 
 exports.User = User
 exports.generateUserModel = generateUserModel
