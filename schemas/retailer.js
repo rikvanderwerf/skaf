@@ -1,5 +1,8 @@
 const retailerSchema = `
 	type Retailer implements BaseSchema {
+		id: ID!
+		createdAt: String!
+		updatedAt: String!
 		name: String!
 	}
 

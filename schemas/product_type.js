@@ -1,5 +1,8 @@
 const productTypeSchema = `
     type ProductType implements BaseSchema {
+        id: ID!
+		createdAt: String!
+		updatedAt: String!
         name: String!
     }
 

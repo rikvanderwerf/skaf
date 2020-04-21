@@ -1,5 +1,8 @@
 const addressSchema = `
     type Address implements BaseSchema {
+        id: ID!
+		createdAt: String!
+		updatedAt: String!
         streetName: String!
         postalCode: String!
         city: String!
