@@ -5,15 +5,13 @@ const storeSchema = gql`
 		id: ID!
 		createdAt: String!
 		updatedAt: String!
-		latitude: String!
-		longitude: String!
-		location: Location!
+		name: String!
+		location: Location
 	}
 
 	input storeInput {
-        latitude: String!
-		longitude: String!
-		location: LocationInput!
+        name: String!
+		location: LocationInput
 	}
 `
 	

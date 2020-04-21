@@ -9,13 +9,10 @@ const Store = sequelize.define('store', {
 		type: DataTypes.UUID,
 		defaultValue: DataTypes.UUIDV4 
     },
-    latitude: {
-        type: DataTypes.DECIMAL,
-        required: false,
-    },
-    longitude: {
-        type: DataTypes.DECIMAL,
-        required: false, 
+    name: {
+        type: DataTypes.STRING,
+        required: true,
+        allowNull: false
     }
 })
 

@@ -12,7 +12,7 @@ const resolvers = [
 	// productResolver,
 	// productTypeResolver,
 	// retailerResolver,
-	// storeResolver,
+	storeResolver,
 	userResolver
 ]
 

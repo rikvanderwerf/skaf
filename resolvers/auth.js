@@ -9,7 +9,6 @@ const authResolver = {
 				const user = await User.findUser({
 					"email": args.authInput.email
 				}) 
-				console.log()
 				const passwordIsCorrect = await bcrypt.compare(args.authInput.password, user.password)
 				if (!passwordIsCorrect) {
 					throw new Error('Invalid credentials')
