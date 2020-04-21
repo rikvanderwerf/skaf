@@ -13,15 +13,42 @@ const { userSchema } = require('./user.js')
 
 const rootQuery = gql`
 	type Query {
-		retailers(retailerInput: RetailerInput): [Retailer!]!
+		# auth
 		login(authInput: AuthInput): Auth
+
+		# catalog
+		catalog(catalogInput: CatalogInput): Catalog!
+
+		# product
+		products(productInput: ProductInput): [Product!]!
+
+		# product type
+		productTypes(productTypeInput: ProductTypeInput): [ProductType!]!
+
+		# retailer
+		retailers(retailerInput: RetailerInput): [Retailer!]!
+		
+		# store
+		stores(storeInput: storeInput): [Store!]!
 	}
 `
 
 const rootMutation = gql`
 	type Mutation {
+		# catalog
+		createCatalog(catalogInput: CatalogInput): Catalog!
+
+		# product
+		createProduct(productInput: ProductInput): Product!
+
+		# retailer
 		createRetailer(retailerInput: RetailerInput): Retailer
-		createUser(userInput: UserInput): User
+		
+		# store
+		createStore(storeInput: storeInput): Store!	
+
+		# user 
+		createUser(userInput: UserInput): User!
 	}
 `
 

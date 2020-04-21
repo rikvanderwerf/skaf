@@ -10,7 +10,7 @@ const authResolver = {
 				const user = await User.findUser({
 					"email": args.authInput.email
 				}) 
-				console.log("*(**************************")
+				console.log()
 				const passwordIsCorrect = await bcrypt.compare(args.authInput.password, user.password)
 				if (!passwordIsCorrect) {
 					throw new Error('Invalid credentials')
@@ -25,11 +25,10 @@ const authResolver = {
 					token: token,
 				}
 			} catch(error) {
-				console.log("23123-")
 				throw err
 			}
 		}
 	}	
 }
 
-module.exports = { authResolver }
+exports.authResolver = authResolver

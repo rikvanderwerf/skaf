@@ -7,8 +7,8 @@ const { storeResolver } = require('./store.js')
 const { userResolver } = require('./user.js')
 
 const resolvers = [
-	authResolver,
-	// catalogResolver,
+	// authResolver,
+	catalogResolver,
 	// productResolver,
 	// productTypeResolver,
 	// retailerResolver,

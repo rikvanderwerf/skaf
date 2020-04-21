@@ -2,7 +2,7 @@ const { listProductTypes } = require('../models/product_type.js')
 
 const productTypeResolver = {
     Query: {
-        productTypes: async (parent, args, context, info) => {
+       async productTypes(parent, args, context, info) {
             return await listProductTypes(args.productTypeInput) || []
         }
     }

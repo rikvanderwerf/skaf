@@ -15,4 +15,4 @@ const userResolver = {
 	}
 }
 
-module.exports = { userResolver }
+exports.userResolver = userResolver
