@@ -1,4 +1,6 @@
-const authSchema = `
+const { gql } = require('apollo-server-express')
+
+const authSchema = gql`
 	type Auth {
 		userId: ID!
 		token: String!

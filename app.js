@@ -1,10 +1,9 @@
-const { ApolloServer } = require('apollo-server-express')
+const { ApolloServer, gql } = require('apollo-server-express')
 const authMiddleware = require('./middlewares/auth.js')
 const express = require('express')
-const graphqlHTTP = require('express-graphql')
-const { rootResolver } = require('./resolvers/resolver')
+const { resolvers } = require('./resolvers/resolver')
 const { sequelize } = require('./database/database.js')
-const schema = require('./schemas/schema.js')
+const { schema } = require('./schemas/schema.js')
 
 const app = express();
 
@@ -13,16 +12,17 @@ app.use(authMiddleware)
 
 sequelize.sync()
 
+const typeDefs = gql`
+  type Query {
+    hello: String
+  }
+`
+
 const server = new ApolloServer({
-    schema
+    typeDefs: schema,
+    resolvers
 })
 server.applyMiddleware({ app })
-
-// app.use('/graphql', graphqlHTTP({
-//     schema: schema,
-//     rootValue: rootResolver,
-// 	graphiql: true,
-// }))
 
 app.listen({ port: 4000 }, () =>
   console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)

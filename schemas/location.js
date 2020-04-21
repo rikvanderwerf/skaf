@@ -1,4 +1,6 @@
-const locationSchema = `
+const { gql } = require('apollo-server-express')
+
+const locationSchema = gql`
     type Location implements BaseSchema {
         id: ID!
 		createdAt: String!

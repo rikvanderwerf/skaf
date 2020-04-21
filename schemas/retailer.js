@@ -1,4 +1,6 @@
-const retailerSchema = `
+const { gql } = require('apollo-server-express')
+
+const retailerSchema = gql`
 	type Retailer implements BaseSchema {
 		id: ID!
 		createdAt: String!

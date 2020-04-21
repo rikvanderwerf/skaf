@@ -1,4 +1,6 @@
-const addressSchema = `
+const { gql } = require('apollo-server-express')
+
+const addressSchema = gql`
     type Address implements BaseSchema {
         id: ID!
 		createdAt: String!

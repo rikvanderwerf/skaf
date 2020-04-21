@@ -1,15 +1,15 @@
 const { listRetailers, createRetailer } = require('../models/retailer.js')
-const { UnAuthenticatedError } = require('../lib/errors')
 
 const retailerResolver = {
-	retailers: async (args) => {
-		return await listRetailers(args.retailerInput) || []
-	},
-	createRetailer: async (args, request) => {
-		if (!request.isAuthenticated) {
-			throw UnAuthenticatedError
+	Query: {
+		retailers: async (parent, args, context, info) => {
+			return await listRetailers(args.retailerInput) || []
 		}
-		return await createRetailer(args.retailerInput)
+	},
+	Mutation: {	
+		createRetailer: async (parent, args, context, info) => {
+			return await createRetailer(args.retailerInput)
+		}
 	}
 }
 

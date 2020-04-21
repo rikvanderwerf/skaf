@@ -1,6 +1,6 @@
 const { addressSchema } = require('./address.js')
+const { gql } = require('apollo-server-express')
 const { authSchema } = require('./auth.js')
-const { buildSchema } = require('graphql')
 const { catalogSchema } = require('./catalog.js')
 const { locationSchema } = require('./location.js')
 const { priceSchema } = require('./price.js')
@@ -11,21 +11,21 @@ const { storeSchema } = require('./store.js')
 const { userSchema } = require('./user.js')
 
 
-const rootQuery = `
-	type rootQuery {
+const rootQuery = gql`
+	type Query {
 		retailers(retailerInput: RetailerInput): [Retailer!]!
 		login(authInput: AuthInput): Auth
 	}
 `
 
-const rootMutation = `
-	type rootMutation {
+const rootMutation = gql`
+	type Mutation {
 		createRetailer(retailerInput: RetailerInput): Retailer
 		createUser(userInput: UserInput): User
 	}
 `
 
-const baseSchema = `
+const baseSchema = gql`
 	interface BaseSchema {
 		id: ID!
 		createdAt: String!
@@ -33,30 +33,20 @@ const baseSchema = `
 	}
 `
 
-const rootSchema = `
-	schema {
-		query: rootQuery
-		mutation: rootMutation
-	}
-`
-
-function concatSchemas() {
-	return schema = [
-		addressSchema,
-		authSchema,
-		baseSchema,
-		catalogSchema,
-		locationSchema,
-		priceSchema,
-		productSchema,
-		productTypeSchema,
-		retailerSchema, 
-		rootMutation, 
-		rootQuery, 
-		rootSchema, 
-		storeSchema,
-		userSchema
-	].join(' ')
-}
-
-module.exports = buildSchema(concatSchemas())
+exports.schema = [
+	rootMutation,
+	rootQuery,
+	addressSchema,
+	authSchema,
+	baseSchema,
+	catalogSchema,
+	locationSchema,
+	priceSchema,
+	productSchema,
+	productTypeSchema,
+	retailerSchema, 
+	rootMutation, 
+	rootQuery,
+	storeSchema,
+	userSchema
+]

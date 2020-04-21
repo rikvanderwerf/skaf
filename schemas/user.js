@@ -1,4 +1,6 @@
-const userSchema = `
+const { gql } = require('apollo-server-express')
+
+const userSchema = gql`
 	type User implements BaseSchema {
 		id: ID!
 		createdAt: String!

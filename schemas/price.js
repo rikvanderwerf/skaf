@@ -1,4 +1,6 @@
-const priceSchema = `
+const { gql } = require('apollo-server-express')
+
+const priceSchema = gql`
     type priceSchema implements BaseSchema {
         id: ID!
 		createdAt: String!
