@@ -15,16 +15,18 @@ const Retailer = sequelize.define('retailer', {
 		}
 	})
 
+
+function createRetailer(args) {
+    return Retailer.create(args)	
+}
+
 function listRetailers(retailerInput) {
 	return Retailer.findAll({
 		where: retailerInput
 	})
 }
 
-function createRetailer(args) {
-    return Retailer.create(args)	
-}
 
+exports.createRetailer = createRetailer
 exports.Retailer = Retailer
 exports.listRetailers = listRetailers
-exports.createRetailer = createRetailer

@@ -1,10 +1,12 @@
-const { authResolver } = require('../resolvers/auth.js')
-const { retailerResolver } = require('../resolvers/retailer.js')
-const { userResolver } = require('../resolvers/user.js')
+const { authResolver } = require('./auth.js')
+const { retailerResolver } = require('./retailer.js')
+const { storeResolver } = require('./store.js')
+const { userResolver } = require('./user.js')
 
 const rootResolver = {
 	...authResolver,
 	...retailerResolver,
+	...storeResolver,
 	...userResolver
 }
 

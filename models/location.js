@@ -1,6 +1,5 @@
-const { City } = require('./city.js')
 const { DataTypes } = require('sequelize');
-const { sequelize } = require('../../database/database.js');
+const { sequelize } = require('../database/database.js');
 
 const Location = sequelize.define('location', {
     id: {
@@ -16,10 +15,6 @@ const Location = sequelize.define('location', {
         type: DataTypes.DECIMAL,
         required: false, 
     }
-})
-
-Location.hasOne(City, {
-    foreignKey: "city_id"
 })
 
 exports.Location = Location

@@ -1,6 +1,6 @@
-const { DataTypes } = require('sequalize');
+const { DataTypes } = require('sequelize');
 const { Product } = require('./product.js')
-const { sequelize } = require('../database.js')
+const { sequelize } = require('../database/database.js')
 
 const Catalog = sequelize.define('catalog', {
     id: {

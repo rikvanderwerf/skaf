@@ -1,7 +1,7 @@
 const { Catalog } = require('./catalog.js')
 const { DataTypes } = require('sequelize');
-const { sequelize } = require('../../database/database.js');
-const { Location } = require('./location/location.js')  
+const { sequelize } = require('../database/database.js');
+const { Location } = require('./location.js')  
 
 const Store = sequelize.define('store', {
     id: {
@@ -27,4 +27,16 @@ Location.hasOne(Catalog, {
     foreignKey: 'catalog_id'
 })
 
+function listStores(storeInput) {
+    return Store.findALl({
+        where: storeInput
+    })
+}
+
+function createStore(args) {
+    return Store.create(args)
+}
+
+exports.createStore = createStore
+exports.listStores = listStores
 exports.Store = Store 
