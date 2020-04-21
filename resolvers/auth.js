@@ -6,7 +6,6 @@ const authResolver = {
 	Query: {
 		async login(parent, args, context, info) {
 			try {
-				console.log("*(**************************")
 				const user = await User.findUser({
 					"email": args.authInput.email
 				}) 
