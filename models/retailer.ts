@@ -1,7 +1,13 @@
-import { DataTypes} from 'sequelize'
+import { DataTypes, Model } from 'sequelize'
 import { sequelize } from '../database/database'
 
-export const Retailer = sequelize.define('retailer', {
+export class Retailer extends Model {
+	public id!: string 
+	public name!: string
+	public userCreatedId!: string
+}
+
+Retailer.init({
 	id: {
 		primaryKey: true,
 		type: DataTypes.UUID,
@@ -9,7 +15,6 @@ export const Retailer = sequelize.define('retailer', {
 	},
 	name: {
 		type: DataTypes.STRING,
-		
 		allowNull: false
 	},
 	userCreatedId: {
@@ -19,6 +24,8 @@ export const Retailer = sequelize.define('retailer', {
 		// referenceses: 'user',
 		// referencesKey: 'id'
 	}
+}, {
+	sequelize: sequelize
 })
 
 // const acl = (retailer)

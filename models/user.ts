@@ -1,8 +1,14 @@
-import { DataTypes } from 'sequelize'
+import { DataTypes, Model } from 'sequelize'
 import { Retailer } from './retailer'
 import { sequelize } from '../database/database'
 
-export const User = sequelize.define('user', {
+export class User extends Model {
+	public id!: string
+	public email!: string
+	public password!: string
+}
+
+User.init({
 	id: {
 		primaryKey: true,
 		type: DataTypes.UUID,
@@ -25,7 +31,10 @@ export const User = sequelize.define('user', {
 			min: 8
 		}
 	}
-}, {underscored: true})
+}, {
+	sequelize: sequelize,
+	underscored: true
+})
 
 User.hasMany(Retailer, {
 	foreignKey: "user_created_id",

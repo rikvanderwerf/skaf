@@ -1,10 +1,15 @@
-import { DataTypes } from 'sequelize'
+import { DataTypes, Model } from 'sequelize'
 import { Price } from './price'
 import { ProductType } from './product_type'
 import { sequelize } from '../database/database'
 import { User } from './user'
 
-export const Product = sequelize.define('product', {
+export class Product extends Model {
+    public id!: string
+    public name!: string
+}
+
+Product.init({
     id: {
 		primaryKey: true,
 		type: DataTypes.UUID,
@@ -14,6 +19,8 @@ export const Product = sequelize.define('product', {
         type: DataTypes.STRING,
         allowNull: false
     }
+}, {
+    sequelize: sequelize
 })
 
 export const ProductPrice = Product.hasOne(Price, {

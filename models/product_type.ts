@@ -1,7 +1,12 @@
-import { DataTypes} from 'sequelize'
+import { DataTypes, Model } from 'sequelize'
 import { sequelize } from '../database/database'
 
-export const ProductType = sequelize.define('productType', {
+export class ProductType extends Model {
+    public id!: string
+    public name!: string
+}
+
+ProductType.init({
     id: {
         primaryKey: true,
         type: DataTypes.UUID,
@@ -12,6 +17,8 @@ export const ProductType = sequelize.define('productType', {
         allowNull: false,
         unique: false,
     }
+}, {
+    sequelize: sequelize
 })
 
 ProductType.belongsTo(ProductType, {

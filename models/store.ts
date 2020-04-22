@@ -1,9 +1,14 @@
 import { Catalog } from './catalog'
-import { DataTypes } from 'sequelize'
+import { DataTypes, Model } from 'sequelize'
 import { sequelize } from '../database/database'
 import { Location } from './location'
 
-export const Store = sequelize.define('store', {
+export class Store extends Model {
+    public id!: string 
+    public name!: string
+}
+
+Store.init({
     id: {
 		primaryKey: true,
 		type: DataTypes.UUID,
@@ -14,6 +19,8 @@ export const Store = sequelize.define('store', {
         
         allowNull: false
     }
+}, {
+    sequelize: sequelize
 })
 
 export const StoreLocation = Store.hasOne(Location, {

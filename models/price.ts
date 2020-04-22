@@ -1,7 +1,13 @@
-import { DataTypes } from 'sequelize'
+import { DataTypes, Model } from 'sequelize'
 import { sequelize } from '../database/database'
 
-export const Price = sequelize.define('price', {
+export class Price extends Model {
+    public id!: string
+    public currency!: string
+    public priceIncents!: number
+}
+
+Price.init({
     id: {
         primaryKey: true,
 		type: DataTypes.UUID,
@@ -16,4 +22,6 @@ export const Price = sequelize.define('price', {
         allowNull: false,
         field: 'price_in_cents'
     }
+}, {
+    sequelize: sequelize
 })

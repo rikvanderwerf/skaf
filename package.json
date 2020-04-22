@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/rikvanderwerf/skaf#readme",
   "dependencies": {
+    "@types/uuid": "^7.0.2",
     "apollo-server-express": "^2.12.0",
     "bcryptjs": "^2.4.3",
     "eslint-plugin-prettier": "^3.1.3",

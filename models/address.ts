@@ -1,7 +1,15 @@
-import { DataTypes } from 'sequelize'
+import { DataTypes, Model } from 'sequelize'
 import { sequelize } from '../database/database'
 
-export const Address = sequelize.define('address', {
+class Address extends Model {
+    public id!: string
+    public streetName!: string
+    public postalCode!: string
+    public city!: string
+    public country!: string
+}
+
+Address.init({
     id: {
 		primaryKey: true,
 		type: DataTypes.UUID,
@@ -25,4 +33,6 @@ export const Address = sequelize.define('address', {
         type: DataTypes.STRING,
         allowNull: false,
     }
+}, {
+    sequelize: sequelize
 })
