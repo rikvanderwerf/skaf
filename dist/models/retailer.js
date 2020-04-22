@@ -2,7 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const database_1 = require("../database/database");
-exports.Retailer = database_1.sequelize.define('retailer', {
+class Retailer extends sequelize_1.Model {
+}
+exports.Retailer = Retailer;
+Retailer.init({
     id: {
         primaryKey: true,
         type: sequelize_1.DataTypes.UUID,
@@ -10,29 +13,27 @@ exports.Retailer = database_1.sequelize.define('retailer', {
     },
     name: {
         type: sequelize_1.DataTypes.STRING,
-        
         allowNull: false
     },
     userCreatedId: {
         type: sequelize_1.DataTypes.UUID,
         allowNull: false,
-        
         field: "user_created_id",
-        referenceses: 'user',
-        referencesKey: 'id'
     }
+}, {
+    sequelize: database_1.sequelize
 });
 // const acl = (retailer)
 function createRetailer(retailerInput) {
-    return exports.Retailer.create(retailerInput);
+    return Retailer.create(retailerInput);
 }
 function getRetailer(retailerInput) {
-    return exports.Retailer.findOne({
+    return Retailer.findOne({
         where: retailerInput
     });
 }
 function listRetailers(retailerInput) {
-    return exports.Retailer.findAll({
+    return Retailer.findAll({
         where: retailerInput
     });
 }

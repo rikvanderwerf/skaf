@@ -2,7 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const database_1 = require("../database/database");
-exports.ProductType = database_1.sequelize.define('productType', {
+class ProductType extends sequelize_1.Model {
+}
+exports.ProductType = ProductType;
+ProductType.init({
     id: {
         primaryKey: true,
         type: sequelize_1.DataTypes.UUID,
@@ -13,14 +16,16 @@ exports.ProductType = database_1.sequelize.define('productType', {
         allowNull: false,
         unique: false,
     }
+}, {
+    sequelize: database_1.sequelize
 });
-exports.ProductType.belongsTo(exports.ProductType, {
+ProductType.belongsTo(ProductType, {
     as: 'parent',
     foreignKey: 'product_type_parent_id'
 });
 function listProductTypes(productTypeInput) {
-    return exports.ProductType.findAll({
-        productTypeInput
+    return ProductType.findAll({
+        where: productTypeInput
     });
 }
 exports.generateProductTypeModel = (user) => ({
