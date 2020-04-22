@@ -8,7 +8,7 @@ const userResolver = {
 				args.userInput.password = password
 				return context.models.user.create(args.userInput)
 			} catch(error) {
-				throw err
+				throw error 
 			}
 		}
 	}

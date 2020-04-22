@@ -25,7 +25,7 @@ function createCatalog(catalogInput) {
 }
 
 const generateCatalogModel = (user) => ({
-	get: (catalogInput) => { 
+	get: (catalogInput) => {
 		getCatalog(catalogInput) 
 	},
 	create: (catalogInput) => { 

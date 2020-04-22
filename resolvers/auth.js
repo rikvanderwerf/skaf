@@ -4,7 +4,7 @@ const User = require('../models/user.js')
 
 const authResolver = {
 	Query: {
-		async login(parent, args, context, info) {
+		async login(_, args) {
 			try {
 				const user = await User.findUser({
 					"email": args.authInput.email
