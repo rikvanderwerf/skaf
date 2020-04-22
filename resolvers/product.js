@@ -1,15 +1,13 @@
-const { listProducts, createProduct } = require('../models/product.js')
-const { UnAuthenticatedError } = require('../lib/errors')
-
 const productResolver = {
-	products: async (args) => {
-		return await listProducts(args.productInput) || []
-	},
-	createProduct: async (args, request) => {
-		if (!request.isAuthenticated) {
-			throw UnAuthenticatedError
+	Query: {
+		async products(_, args, context) {
+			return await context.models.product.list(args.productInput) || []
 		}
-        return await createProduct(args.productInput)
+	},
+	Mutation: {
+		async createProduct(_, args, context) {
+			return await context.models.product.create(args.productInput)
+		}
 	}
 }
 

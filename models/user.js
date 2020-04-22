@@ -29,16 +29,33 @@ const User = sequelize.define('user', {
 
 User.hasMany(Retailer, {as: "Retailers"})
 
-function createUser(args) {
-	return User.create(args)	
+function createUser(userInput) {
+	return User.create(userInput)	
 }
 
-function findUser(userFields) {
+function getUser(userInput) {
 	return User.findOne({
-		where: userFields 
+		where: userInput 
 	})
 }
 
+function listUsers(userInput) {
+	return User.findAll({
+		where: userInput
+	})	
+}
+
+const generateUserModel = ({ user }) => ({
+	create: (userInput) => { 
+		createUser(userInput) 
+	},
+	get: (userInput) => { 
+		getUser(userInput) 
+	},
+	list: (userInput) => {
+		listUsers(userInput) 
+	},
+})
+
+exports.generateUserModel = generateUserModel
 exports.User = User
-exports.createUser = createUser
-exports.findUser = findUser

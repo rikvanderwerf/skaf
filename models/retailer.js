@@ -1,6 +1,5 @@
 const { DataTypes} = require('sequelize');
 const { sequelize } = require('../database/database.js');
-const { User } = require('./user.js')
 
 const Retailer = sequelize.define('retailer', {
 		id: {
@@ -15,9 +14,14 @@ const Retailer = sequelize.define('retailer', {
 		}
 	})
 
+function createRetailer(retailerInput) {
+    return Retailer.create(retailerInput)	
+}
 
-function createRetailer(args) {
-    return Retailer.create(args)	
+function getRetailer(retailerInput) {
+	return Retailer.findOne({
+		where: retailerInput
+	})
 }
 
 function listRetailers(retailerInput) {
@@ -26,7 +30,17 @@ function listRetailers(retailerInput) {
 	})
 }
 
+const generateRetailerModel = ({ user }) => ({ 
+	create: (retailerInput) => { 
+		createUser(retailerInput) 
+	},
+	get: (retailerInput) => { 
+		getUser(retailerInput) 
+	},
+	list: (retailerInput) => {
+		listUsers(retailerInput)
+	},
+})
 
-exports.createRetailer = createRetailer
 exports.Retailer = Retailer
-exports.listRetailers = listRetailers
+exports.generateRetailerModel = generateRetailerModel

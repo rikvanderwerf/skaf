@@ -24,6 +24,35 @@ const ProductProductType = Product.hasOne(ProductType, {
     foreignKey: 'product_type_id'
 })
 
+function createProduct(productInput) {
+	return Product.create(productInput)	
+}
+
+function listProducts(productInput) {
+	return Product.findAll({
+		where: productInput 
+	})	
+}
+
+function getProduct(productInput) {
+	return User.findOne({
+		where: productInput 
+	})
+}
+
+const generateProductModel = ({ user }) => ({
+    list: (productInput) => {
+        listProducts(productInput)
+    },
+    get: (productInput) => {
+        getProduct(productInput)
+    },
+    create: (productInput) => {
+        createProduct(productInput)
+    }
+})
+
+exports.generateProductModel = generateProductModel
 exports.Product = Product
 exports.ProductPrice = ProductPrice
 exports.ProductProductType = ProductProductType

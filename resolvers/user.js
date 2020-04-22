@@ -1,16 +1,17 @@
 const bcrypt = require('bcryptjs')
-const { createUser } = require('../models/user.js')
 
 const userResolver = {
-	createUser: async (args) => {
-		try {
-			const password = bcrypt.hash(args.userInput.password, 12)
-			args.userInput.password = password
-			return createUser(args.userInput)
-		} catch(error) {
-			throw err
+	Mutation: {
+		async createUser(_, args, context) {
+			try {
+				const password = await bcrypt.hash(args.userInput.password, 12)
+				args.userInput.password = password
+				return context.models.user.create(args.userInput)
+			} catch(error) {
+				throw error 
+			}
 		}
 	}
 }
 
-module.exports = { userResolver }
+exports.userResolver = userResolver

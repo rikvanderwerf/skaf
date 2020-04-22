@@ -1,14 +1,17 @@
-const storeSchema = `
+const { gql } = require('apollo-server-express')
+
+const storeSchema = gql`
 	type Store implements BaseSchema {
-		latitude: String!
-		longitude: String!
-		location: Location!
+		id: ID!
+		createdAt: String!
+		updatedAt: String!
+		name: String!
+		location: Location
 	}
 
 	input storeInput {
-        latitude: String!
-		longitude: String!
-		location: Location!
+        name: String!
+		location: LocationInput
 	}
 `
 	

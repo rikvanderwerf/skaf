@@ -1,26 +1,22 @@
+const { findUser } = require('../models/user.js')
 const jwt = require('jsonwebtoken')
 
-function setAuthenticatedToFalse(request, next) {
-    request.isAuthenticated = false
-    return next()
-}
-
-module.exports = (request, _, next) => {
-    const authHeader = request.get('Authorization')
+function getUserFromRequestIfLoggedIn(request) {
+const authHeader = request.get('Authorization')
     if (!authHeader) {
-        return setAuthenticatedToFalse(request, next)
+        return 
     }
     const token = authHeader.split(' ')[1]
     if (!token || token == '') {
-        return setAuthenticatedToFalse(request, next)
+        return 
     }
     let decodedToken
     try {
         decodedToken = jwt.token(token, 'privateKey')
     } catch (error) {
-        return setAuthenticatedToFalse(request, next)
+        return 
     }
-    request.isAuthenticated = true
-    request.userId = decodedToken.userId
-    next()
+    return findUser(decodedToken.userId)
 }
+
+exports.getUserFromRequestIfLoggedIn = getUserFromRequestIfLoggedIn

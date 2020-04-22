@@ -1,18 +1,13 @@
-const { getCatalog, createCatalog } = require('../models/catalog.js')
-const { UnAuthenticatedError } = require('../lib/errors.js')
-const { NotFoundError } = require('../lib/errors.js')
-
 const catalogResolver = {
-    catalog: async (args) => {
-        catalog = await getCatalog(args.catalogInput)
-        if (!catalog) { throw NotFoundError }
-        return catalog
+    Query: {
+        async catalog(_, args, context) {
+            return await context.models.catalog.get(args.catalogInput)
+        }
     },
-    createCatalog: async(args) => {
-        if (!request.isAuthenticated) {
-			throw UnAuthenticatedError
-		}
-        return await createCatalog(args.catalogInput)
+    Mutation: {
+        async createCatalog(_, args, context) {
+            return await context.models.catalog.create(args.catalogInput)
+        }
     }
 }
 

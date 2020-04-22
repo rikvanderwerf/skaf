@@ -6,14 +6,14 @@ const { retailerResolver } = require('./retailer.js')
 const { storeResolver } = require('./store.js')
 const { userResolver } = require('./user.js')
 
-const rootResolver = {
-	...authResolver,
-	...catalogResolver,
-	...productResolver,
-	...productTypeResolver,
-	...retailerResolver,
-	...storeResolver,
-	...userResolver
-}
+const resolvers = [
+	authResolver,
+	catalogResolver,
+	productResolver,
+	productTypeResolver,
+	retailerResolver,
+	storeResolver,
+	userResolver
+]
 
-exports.rootResolver = rootResolver
+exports.resolvers = resolvers
