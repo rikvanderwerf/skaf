@@ -22,6 +22,7 @@ const Retailer = sequelize.define('retailer', {
 	}
 })
 
+// const acl = (retailer)
 
 function createRetailer(retailerInput) {
     return Retailer.create(retailerInput)	
