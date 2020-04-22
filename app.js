@@ -15,8 +15,8 @@ sequelize.sync()
 const server = new ApolloServer({
     typeDefs: schema,
     resolvers,
-    context: ({ req }) => {
-      const user = getUserFromRequestIfLoggedIn(req)
+    context: async ({ req }) => {
+      const user = await getUserFromRequestIfLoggedIn(req)
 
       return { 
           user,

@@ -62,3 +62,4 @@ const generateUserModel = (user) => ({
 
 exports.generateUserModel = generateUserModel
 exports.User = User
+exports.getUser = getUser

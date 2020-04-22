@@ -1,8 +1,8 @@
-const { findUser } = require('../models/user.js')
+const { getUser } = require('../models/user.js')
 const jwt = require('jsonwebtoken')
 
-function getUserFromRequestIfLoggedIn(request) {
-const authHeader = request.get('Authorization')
+async function getUserFromRequestIfLoggedIn(request) {
+    const authHeader = request.get('Authorization')
     if (!authHeader) {
         return 
     }
@@ -12,11 +12,11 @@ const authHeader = request.get('Authorization')
     }
     let decodedToken
     try {
-        decodedToken = jwt.token(token, 'privateKey')
+        decodedToken = jwt.decode(token, 'privateKey')   
     } catch (error) {
         return 
     }
-    return findUser(decodedToken.userId)
+    return await getUser({'id': decodedToken.userId})
 }
 
 exports.getUserFromRequestIfLoggedIn = getUserFromRequestIfLoggedIn

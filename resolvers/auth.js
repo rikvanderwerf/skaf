@@ -15,7 +15,7 @@ const authResolver = {
 				const token = jwt.sign(
 					{userId: user.id, email: user.email},
 					'privateKey',
-					{ expiresIn: '1h'}
+					{ expiresIn: '100000h'}
 				)
 				return {
 					userId: user.id, 

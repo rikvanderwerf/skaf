@@ -41,7 +41,7 @@ function listRetailers(retailerInput) {
 
 const generateRetailerModel = (user) => ({ 
 	create: (retailerInput) => { 
-		// retailerInput['userCreatedId'] = user.id
+		retailerInput['userCreatedId'] = user.id
 		return createRetailer(retailerInput) 
 	},
 	get: (retailerInput) => { 
