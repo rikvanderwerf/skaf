@@ -1,0 +1,34 @@
+const { DataTypes } = require('sequelize');
+const { Product } = require('./product.js')
+const { sequelize } = require('../database/database.js')
+
+export const Catalog = sequelize.define('catalog', {
+    id: {
+      primaryKey: true,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4
+    }
+})
+
+Catalog.hasMany(Product, {
+    as: 'products'
+})
+
+function getCatalog(catalogInput) {
+	return Catalog.findOne({
+		where: catalogInput
+	})
+}
+
+function createCatalog(catalogInput) {
+	return Catalog.create(catalogInput)
+}
+
+export const generateCatalogModel = (user) => ({
+	get: (catalogInput) => {
+		return getCatalog(catalogInput) 
+	},
+	create: (catalogInput) => { 
+		return createCatalog(catalogInput) 
+	}
+})
