@@ -28,7 +28,7 @@ ProductType.belongsTo(ProductType, {
 
 function listProductTypes(productTypeInput) {
     return ProductType.findAll({
-        productTypeInput
+        where: productTypeInput
     })
 }
 

@@ -1,7 +1,7 @@
 import { DataTypes, Model } from 'sequelize'
 import { sequelize } from '../database/database'
 
-class Address extends Model {
+export class Address extends Model {
     public id!: string
     public streetName!: string
     public postalCode!: string
