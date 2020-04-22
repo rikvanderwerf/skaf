@@ -2,17 +2,26 @@ const { DataTypes} = require('sequelize');
 const { sequelize } = require('../database/database.js');
 
 const Retailer = sequelize.define('retailer', {
-		id: {
-			primaryKey: true,
-			type: DataTypes.UUID,
-			defaultValue: DataTypes.UUIDV4
-		}, 	
-		name: {
-			type: DataTypes.STRING,
-			required: true, 
-			allowNull: false
-		}
-	})
+	id: {
+		primaryKey: true,
+		type: DataTypes.UUID,
+		defaultValue: DataTypes.UUIDV4
+	}, 	
+	name: {
+		type: DataTypes.STRING,
+		required: true, 
+		allowNull: false
+	},
+	userCreatedId: {
+		type: DataTypes.UUID,
+		allowNull: false,
+		required: true,
+		field: "user_created_id",
+		referenceses: 'user',
+		referencesKey: 'id'
+	}
+})
+
 
 function createRetailer(retailerInput) {
     return Retailer.create(retailerInput)	
@@ -30,15 +39,16 @@ function listRetailers(retailerInput) {
 	})
 }
 
-const generateRetailerModel = ({ user }) => ({ 
+const generateRetailerModel = (user) => ({ 
 	create: (retailerInput) => { 
-		createUser(retailerInput) 
+		// retailerInput['userCreatedId'] = user.id
+		return createRetailer(retailerInput) 
 	},
 	get: (retailerInput) => { 
-		getUser(retailerInput) 
+		return getRetailer(retailerInput) 
 	},
 	list: (retailerInput) => {
-		listUsers(retailerInput)
+		return listRetailers(retailerInput)
 	},
 })
 

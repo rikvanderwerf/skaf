@@ -25,7 +25,7 @@ function listProductTypes(productTypeInput) {
     })
 }
 
-const generateProductTypeModel = ({ user }) => {
+const generateProductTypeModel = (user) => {
     list: (productTypeInput) => {
         listProductTypes(productTypeInput)
     }

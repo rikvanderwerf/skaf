@@ -40,15 +40,15 @@ function listStores(storeInput) {
     })
 }
 
-const generateStoreModel = ({ user }) => ({
+const generateStoreModel = (user) => ({
     create: (storeInput) => {
-        createStore(storeInput)
+        return createStore(storeInput)
     },
     get: (storeInput) => {
-        getStore(storeInput)
+        return getStore(storeInput)
     },
     list: (storeInput) => {
-        listStores(storeInput)
+        return listStores(storeInput)
     }
 })
 

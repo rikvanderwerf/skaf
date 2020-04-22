@@ -40,15 +40,17 @@ function getProduct(productInput) {
 	})
 }
 
-const generateProductModel = ({ user }) => ({
+
+
+const generateProductModel = (user) => ({
     list: (productInput) => {
-        listProducts(productInput)
+        return listProducts(productInput)
     },
     get: (productInput) => {
-        getProduct(productInput)
+        return getProduct(productInput)
     },
     create: (productInput) => {
-        createProduct(productInput)
+        return createProduct(productInput)
     }
 })
 

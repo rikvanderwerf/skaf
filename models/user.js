@@ -27,7 +27,10 @@ const User = sequelize.define('user', {
 	}
 }, {underscored: true})
 
-User.hasMany(Retailer, {as: "Retailers"})
+User.hasMany(Retailer, {
+	foreignKey: "user_created_id",
+	as: "Retailers"
+})
 
 function createUser(userInput) {
 	return User.create(userInput)	
@@ -45,15 +48,15 @@ function listUsers(userInput) {
 	})	
 }
 
-const generateUserModel = ({ user }) => ({
-	create: (userInput) => { 
-		createUser(userInput) 
+const generateUserModel = (user) => ({
+	create: (userInput) => {
+		return createUser(userInput) 
 	},
 	get: (userInput) => { 
-		getUser(userInput) 
+		return getUser(userInput) 
 	},
 	list: (userInput) => {
-		listUsers(userInput) 
+		return listUsers(userInput) 
 	},
 })
 

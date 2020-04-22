@@ -1,12 +1,11 @@
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const User = require('../models/user.js')
 
 const authResolver = {
 	Query: {
-		async login(_, args) {
+		async login(_, args, context) {
 			try {
-				const user = await User.findUser({
+				const user = await context.models.user.get({
 					"email": args.authInput.email
 				}) 
 				const passwordIsCorrect = await bcrypt.compare(args.authInput.password, user.password)
@@ -23,7 +22,7 @@ const authResolver = {
 					token: token,
 				}
 			} catch(error) {
-				throw err
+				throw error
 			}
 		}
 	}	
