@@ -1,5 +1,5 @@
-const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
+import bcrypt from 'bcryptjs'
+import jwt from 'jsonwebtoken'
 
 export const authResolver = {
 	Query: {
@@ -7,7 +7,7 @@ export const authResolver = {
 			try {
 				const user = await context.models.user.get({
 					"email": args.authInput.email
-				}) 
+				})
 				const passwordIsCorrect = await bcrypt.compare(args.authInput.password, user.password)
 				if (!passwordIsCorrect) {
 					throw new Error('Invalid credentials')
@@ -18,12 +18,12 @@ export const authResolver = {
 					{ expiresIn: '100000h'}
 				)
 				return {
-					userId: user.id, 
-					token: token,
+					userId: user.id,
+					token,
 				}
 			} catch(error) {
 				throw error
 			}
 		}
-	}	
+	}
 }

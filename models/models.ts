@@ -1,9 +1,9 @@
-const { generateCatalogModel } = require('./catalog.js')
-const { generateUserModel } = require('./user.js')
-const { generateProductModel } = require('./product.js')
-const { generateProductTypeModel } = require('./product_type.js')
-const { generateRetailerModel } = require('./retailer.js')
-const { generateStoreModel } = require('./store.js')
+import { generateCatalogModel } from './catalog'
+import { generateUserModel } from './user'
+import { generateProductModel } from './product'
+import { generateProductTypeModel } from './product_type'
+import { generateRetailerModel } from './retailer'
+import { generateStoreModel } from './store'
 
 export const generateModels = (user) => {
     return {

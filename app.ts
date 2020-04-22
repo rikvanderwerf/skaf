@@ -1,10 +1,10 @@
-const { getUserFromRequestIfLoggedIn } = require('./middlewares/auth.js')
-const { ApolloServer } = require('apollo-server-express')
-const express = require('express')
-const { generateModels } = require('./models/models.js')
-const { resolvers } = require('./resolvers/resolver')
-const { sequelize } = require('./database/database.js')
-const { schema } = require('./schemas/schema.js')
+import { getUserFromRequestIfLoggedIn } from './middlewares/auth'
+import { ApolloServer } from 'apollo-server-express'
+import express from 'express'
+import { generateModels } from './models/models'
+import { resolvers } from './resolvers/resolver'
+import { sequelize } from './database/database'
+import { schema } from './schemas/schema'
 
 const app = express();
 
@@ -18,7 +18,7 @@ const server = new ApolloServer({
     context: async ({ req }) => {
       const user = await getUserFromRequestIfLoggedIn(req)
 
-      return { 
+      return {
           user,
           models: generateModels(user)
       }

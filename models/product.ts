@@ -1,18 +1,18 @@
-const { DataTypes } = require('sequelize')
-const { Price } = require('./price.js')
-const { ProductType } = require('./product_type.js')
-const { sequelize } = require('../database/database.js')
+import { DataTypes } from 'sequelize'
+import { Price } from './price'
+import { ProductType } from './product_type'
+import { sequelize } from '../database/database'
+import { User } from './user'
 
 export const Product = sequelize.define('product', {
     id: {
 		primaryKey: true,
 		type: DataTypes.UUID,
 		defaultValue: DataTypes.UUIDV4
-    }, 
+    },
     name: {
         type: DataTypes.STRING,
-        required: true,
-        nullable: false,
+        allowNull: false
     }
 })
 
@@ -25,18 +25,18 @@ export const ProductProductType = Product.hasOne(ProductType, {
 })
 
 function createProduct(productInput) {
-	return Product.create(productInput)	
+	return Product.create(productInput)
 }
 
 function listProducts(productInput) {
 	return Product.findAll({
-		where: productInput 
-	})	
+		where: productInput
+	})
 }
 
 function getProduct(productInput) {
 	return User.findOne({
-		where: productInput 
+		where: productInput
 	})
 }
 

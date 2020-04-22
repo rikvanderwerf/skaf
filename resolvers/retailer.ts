@@ -4,7 +4,7 @@ export const retailerResolver = {
 			return await context.models.retailer.list(args.retailerInput) || []
 		}
 	},
-	Mutation: {	
+	Mutation: {
 		async createRetailer(_, args, context) {
 			return await context.models.retailer.create(args.retailerInput)
 		}

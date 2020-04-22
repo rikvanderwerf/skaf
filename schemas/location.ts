@@ -1,4 +1,4 @@
-const { gql } = require('apollo-server-express')
+import { gql } from 'apollo-server-express'
 
 export const locationSchema = gql`
     type Location implements BaseSchema {

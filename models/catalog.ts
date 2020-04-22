@@ -1,6 +1,6 @@
-const { DataTypes } = require('sequelize');
-const { Product } = require('./product.js')
-const { sequelize } = require('../database/database.js')
+import { DataTypes } from 'sequelize'
+import { Product } from './product'
+import { sequelize } from '../database/database'
 
 export const Catalog = sequelize.define('catalog', {
     id: {
@@ -26,9 +26,9 @@ function createCatalog(catalogInput) {
 
 export const generateCatalogModel = (user) => ({
 	get: (catalogInput) => {
-		return getCatalog(catalogInput) 
+		return getCatalog(catalogInput)
 	},
-	create: (catalogInput) => { 
-		return createCatalog(catalogInput) 
+	create: (catalogInput) => {
+		return createCatalog(catalogInput)
 	}
 })

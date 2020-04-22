@@ -4,7 +4,6 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
     "build": "tsc",
     "prestart": "npm run build",
     "start": "nodemon app.js"
@@ -34,10 +33,14 @@
     "uuid": "^7.0.3"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "@types/bluebird": "^3.5.30",
     "@types/express": "^4.17.6",
     "@types/node": "^13.13.2",
+    "@types/validator": "github:types/validator",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-import": "^2.20.2",
     "nodemon": "^2.0.3",
     "tslint": "^6.1.1",
     "typescript": "^3.8.3"

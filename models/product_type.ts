@@ -1,5 +1,5 @@
-const { DataTypes} = require('sequelize');
-const { sequelize } = require('../database/database.js')
+import { DataTypes} from 'sequelize'
+import { sequelize } from '../database/database'
 
 export const ProductType = sequelize.define('productType', {
     id: {
@@ -10,11 +10,11 @@ export const ProductType = sequelize.define('productType', {
     name: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: false, 
+        unique: false,
     }
 })
 
-ProductType.belongsTo(ProductType, { 
+ProductType.belongsTo(ProductType, {
     as: 'parent',
     foreignKey: 'product_type_parent_id'
 })
@@ -25,8 +25,8 @@ function listProductTypes(productTypeInput) {
     })
 }
 
-export const generateProductTypeModel = (user) => {
+export const generateProductTypeModel = (user) => ({
     list: (productTypeInput) => {
         listProductTypes(productTypeInput)
     }
-}
+})

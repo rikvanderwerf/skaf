@@ -1,17 +1,17 @@
-const { Catalog } = require('./catalog.js')
-const { DataTypes } = require('sequelize');
-const { sequelize } = require('../database/database.js');
-const { Location } = require('./location.js')  
+import { Catalog } from './catalog'
+import { DataTypes } from 'sequelize'
+import { sequelize } from '../database/database'
+import { Location } from './location'
 
 export const Store = sequelize.define('store', {
     id: {
 		primaryKey: true,
 		type: DataTypes.UUID,
-		defaultValue: DataTypes.UUIDV4 
+		defaultValue: DataTypes.UUIDV4
     },
     name: {
         type: DataTypes.STRING,
-        required: true,
+        
         allowNull: false
     }
 })

@@ -1,5 +1,5 @@
-const { DataTypes } = require('sequelize')
-const { sequelize } = require('../database/database.js')
+import { DataTypes } from 'sequelize'
+import { sequelize } from '../database/database'
 
 export const Price = sequelize.define('price', {
     id: {
@@ -9,12 +9,10 @@ export const Price = sequelize.define('price', {
     },
     currency: {
         type: DataTypes.STRING,
-        required: true,
         allowNull: false,
     },
     priceInCents: {
         type: DataTypes.INTEGER,
-        required: true,
         allowNull: false,
         field: 'price_in_cents'
     }

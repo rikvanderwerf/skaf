@@ -1,10 +1,10 @@
-const { authResolver } = require('./auth.js')
-const { catalogResolver } = require('./catalog.js')
-const { productResolver } = require('./product.js')
-const { productTypeResolver } = require('./product_type.js')
-const { retailerResolver } = require('./retailer.js')
-const { storeResolver } = require('./store.js')
-const { userResolver } = require('./user.js')
+import { authResolver } from './auth'
+import { catalogResolver } from './catalog'
+import { productResolver } from './product'
+import { productTypeResolver } from './product_type'
+import { retailerResolver } from './retailer'
+import { storeResolver } from './store'
+import { userResolver } from './user'
 
 export const resolvers = [
 	authResolver,

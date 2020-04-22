@@ -1,4 +1,4 @@
-const { gql } = require('apollo-server-express')
+import { gql } from 'apollo-server-express'
 
 export const productSchema = gql`
     type Product implements BaseSchema {
@@ -11,7 +11,7 @@ export const productSchema = gql`
 
     input ProductInput {
         name: String!
-        productType: ProductTypeInput 
+        productType: ProductTypeInput
     }
 `;
 

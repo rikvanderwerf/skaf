@@ -1,4 +1,3 @@
-const Sequalize = require('sequelize');
+import { Sequelize } from 'sequelize'
 
-export const sequelize = new Sequalize('postgres://login_role:password@postgresql_db:5432/postgres')
-
+export const sequelize = new Sequelize('postgres://login_role:password@postgresql_db:5432/postgres')

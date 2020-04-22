@@ -1,14 +1,14 @@
-const { addressSchema } = require('./address.js')
-const { gql } = require('apollo-server-express')
-const { authSchema } = require('./auth.js')
-const { catalogSchema } = require('./catalog.js')
-const { locationSchema } = require('./location.js')
-const { priceSchema } = require('./price.js')
-const { productSchema } = require('./product.js')
-const { productTypeSchema } = require('./product_type.js')
-const { retailerSchema } = require('./retailer.js')
-const { storeSchema } = require('./store.js')
-const { userSchema } = require('./user.js')
+import { addressSchema } from './address'
+import { gql } from 'apollo-server-express'
+import { authSchema } from './auth'
+import { catalogSchema } from './catalog'
+import { locationSchema } from './location'
+import { priceSchema } from './price'
+import { productSchema } from './product'
+import { productTypeSchema } from './product_type'
+import { retailerSchema } from './retailer'
+import { storeSchema } from './store'
+import { userSchema } from './user'
 
 const rootQuery = gql`
 	type Query {
@@ -26,7 +26,7 @@ const rootQuery = gql`
 
 		# retailer
 		retailers(retailerInput: RetailerInput): [Retailer!]!
-		
+
 		# store
 		stores(storeInput: storeInput): [Store!]!
 	}
@@ -42,11 +42,11 @@ const rootMutation = gql`
 
 		# retailer
 		createRetailer(retailerInput: RetailerInput): Retailer
-		
-		# store
-		createStore(storeInput: storeInput): Store!	
 
-		# user 
+		# store
+		createStore(storeInput: storeInput): Store!
+
+		# user
 		createUser(userInput: UserInput): User!
 	}
 `
@@ -59,7 +59,7 @@ const baseSchema = gql`
 	}
 `
 
-exports.schema = [
+export const schema = [
 	rootMutation,
 	rootQuery,
 	addressSchema,
@@ -70,8 +70,8 @@ exports.schema = [
 	priceSchema,
 	productSchema,
 	productTypeSchema,
-	retailerSchema, 
-	rootMutation, 
+	retailerSchema,
+	rootMutation,
 	rootQuery,
 	storeSchema,
 	userSchema

@@ -1,4 +1,4 @@
-const bcrypt = require('bcryptjs')
+import bcrypt from 'bcryptjs'
 
 export const userResolver = {
 	Mutation: {
@@ -8,7 +8,7 @@ export const userResolver = {
 				args.userInput.password = password
 				return context.models.user.create(args.userInput)
 			} catch(error) {
-				throw error 
+				throw error
 			}
 		}
 	}

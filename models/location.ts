@@ -1,20 +1,18 @@
-const { Address } = require('./address.js')
-const { DataTypes } = require('sequelize')
-const { sequelize } = require('../database/database.js')
+import { Address } from './address'
+import { DataTypes } from 'sequelize'
+import { sequelize } from '../database/database'
 
 export const Location = sequelize.define('location', {
     id: {
 		primaryKey: true,
 		type: DataTypes.UUID,
-		defaultValue: DataTypes.UUIDV4 
+		defaultValue: DataTypes.UUIDV4
     },
     latitude: {
         type: DataTypes.DECIMAL,
-        required: false,
     },
     longitude: {
         type: DataTypes.DECIMAL,
-        required: false, 
     }
 })
 
