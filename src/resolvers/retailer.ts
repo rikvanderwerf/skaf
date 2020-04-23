@@ -4,7 +4,7 @@ import { retailerFactory } from "../lib/factories/retailer"
 export const retailerResolver = {
 	Query: {
 		retailers: resolverConfig('retailer.list', retailerFactory, async (_, args, context) => {
-			return await context.models.retailer.list(args.retailerInput) || []
+			return await context.models.user.retailers
 		})
 	},
 	Mutation: {
