@@ -1,10 +1,18 @@
 import { DataTypes, Model } from 'sequelize'
 import { sequelize } from '../database/database'
+import { Store } from './store'
+import { User } from './user'
 
 export class Retailer extends Model {
 	public id!: string 
 	public name!: string
 	public userCreatedId!: string
+
+	acl() {
+		return {
+			'user:${userCreatedId}': ['retailers.put']
+		}
+	}
 }
 
 Retailer.init({
@@ -21,14 +29,20 @@ Retailer.init({
 		type: DataTypes.UUID,
 		allowNull: false,
 		field: "user_created_id",
-		// referenceses: 'user',
-		// referencesKey: 'id'
+		// references: {
+		// 	model: User,
+		// 	key: 'id'
+		// }
 	}
 }, {
 	sequelize: sequelize
 })
 
-// const acl = (retailer)
+const Shops = Retailer.hasMany(Store, {
+	foreignKey: 'retailer_id',
+		as: 'shops'
+	}
+)
 
 function createRetailer(retailerInput) {
     return Retailer.create(retailerInput)

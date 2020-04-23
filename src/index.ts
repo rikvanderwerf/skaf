@@ -1,10 +1,11 @@
 import { getUserFromRequestIfLoggedIn } from './middlewares/auth'
 import { ApolloServer } from 'apollo-server-express'
 import express from 'express'
-import { generateModels } from './models/models'
+import { generateModels} from './models/models'
 import { resolvers } from './resolvers/resolver'
 import { sequelize } from './database/database'
 import { schema } from './schemas/schema'
+import { factories } from './lib/factories/factories'
 
 const app = express();
 
@@ -20,7 +21,8 @@ const server = new ApolloServer({
 
       return {
           user,
-          models: generateModels(user)
+          models: generateModels(user),
+          factories: factories 
       }
     }
 })

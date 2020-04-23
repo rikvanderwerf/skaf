@@ -6,7 +6,20 @@
   "scripts": {
     "build": "tsc",
     "prestart": "npm run build",
-    "start": "nodemon index.js"
+    "start": "nodemon --watch 'src/**/*.ts' --ignore 'src/**/*.spec.ts' --exec 'ts-node' src/index.ts"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "**/*.test.ts",
+      "**/*.spec.ts",
+      ".git",
+      "node_modules"
+    ],
+    "watch": [
+      "src/"
+    ],
+    "exec": "npm start",
+    "ext": "ts"
   },
   "repository": {
     "type": "git",
@@ -43,6 +56,7 @@
     "eslint-config-prettier": "^6.10.1",
     "eslint-plugin-import": "^2.20.2",
     "nodemon": "^2.0.3",
+    "ts-node": "^8.9.0",
     "tslint": "^6.1.1",
     "typescript": "^3.8.3"
   }

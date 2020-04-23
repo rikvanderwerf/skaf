@@ -8,6 +8,9 @@ export const authResolver = {
 				const user = await context.models.user.get({
 					"email": args.authInput.email
 				})
+				if (!user) { 
+					throw new Error('Invalid credentials')
+				}
 				const passwordIsCorrect = await bcrypt.compare(args.authInput.password, user.password)
 				if (!passwordIsCorrect) {
 					throw new Error('Invalid credentials')
