@@ -11,8 +11,8 @@ export const retailerResolver = {
 		createRetailer: resolverConfig('retailer.post', retailerFactory, async (_, args, context) => {
 			return await context.models.retailer.create(args.retailerInput)
 		}),
-		updateRetailer: resolverConfig('retailer.put', retailerFactory, async (_, args, context) => {
-			return await context.models.retailer.put(args.id, args.retailerInput)
+		updateRetailer: resolverConfig('retailer.put', retailerFactory, (_, args, context) => {
+			return context.model.update(args.retailerInput)
 		})
 	}
 }
