@@ -1,4 +1,5 @@
 import { User } from "../../models/user"
+import { containsAcl } from "./factories"
 
 export const retailerFactory = () => {
     const _acl = {
@@ -10,17 +11,5 @@ export const retailerFactory = () => {
     }
     return Object.assign(self, containsAcl(self))
 }
-
-const containsAcl = (self) => ({
-    hasPermission: (user: User, permission: String) => {
-        let allAcl = []
-        allAcl = allAcl.concat(self._acl['everyone'])
-        if (user) {
-            allAcl = allAcl.concat(self._acl['user:${user.id}'])
-            allAcl = allAcl.concat(self._acl['authenticated'])
-        }
-        return allAcl.includes(permission)
-    }
-})
 
 

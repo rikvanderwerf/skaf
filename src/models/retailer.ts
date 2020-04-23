@@ -48,9 +48,11 @@ function createRetailer(retailerInput) {
     return Retailer.create(retailerInput)
 }
 
-function getRetailer(retailerInput) {
+function getRetailer(id) {
 	return Retailer.findOne({
-		where: retailerInput
+		where:{
+			id: id
+		}
 	})
 }
 
@@ -58,6 +60,20 @@ function listRetailers(retailerInput) {
 	return Retailer.findAll({
 		where: retailerInput
 	})
+}
+
+function putRetailer(id, retailerInput) {
+	return Retailer.update(
+		retailerInput, 	
+		{
+			where: {
+				id: id
+			},
+			returning: true
+		}
+	  ).then(([_, updatedRetailer]) => {
+		  return updatedRetailer
+	  })
 }
 
 export const generateRetailerModel = (user) => ({
@@ -71,4 +87,9 @@ export const generateRetailerModel = (user) => ({
 	list: (retailerInput) => {
 		return listRetailers(retailerInput)
 	},
+	put: async (id, retailerInput) => {
+		const updatedList = await putRetailer(id, retailerInput)
+		return updatedList[0]
+	},
 })
+

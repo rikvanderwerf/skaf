@@ -26,6 +26,7 @@ const rootQuery = gql`
 
 		# retailer
 		retailers(retailerInput: RetailerInput): [Retailer!]!
+		getRetailer(id: ID): Retailer!
 
 		# store
 		stores(storeInput: storeInput): [Store!]!
@@ -42,6 +43,7 @@ const rootMutation = gql`
 
 		# retailer
 		createRetailer(retailerInput: RetailerInput): Retailer
+		updateRetailer(id: ID, retailerInput: RetailerInput): Retailer
 
 		# store
 		createStore(storeInput: storeInput): Store!
