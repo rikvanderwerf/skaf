@@ -1,0 +1,1 @@
+export const UnAuthenticatedError = new Error('Unauthenticated')

@@ -2,10 +2,24 @@
   "name": "skaf",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
+    "build": "tsc",
+    "prestart": "npm run build",
+    "start": "nodemon --watch 'src/**/*.ts' --ignore 'src/**/*.spec.ts' --exec 'ts-node' src/index.ts"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "**/*.test.ts",
+      "**/*.spec.ts",
+      ".git",
+      "node_modules"
+    ],
+    "watch": [
+      "src/"
+    ],
+    "exec": "npm start",
+    "ext": "ts"
   },
   "repository": {
     "type": "git",
@@ -18,6 +32,7 @@
   },
   "homepage": "https://github.com/rikvanderwerf/skaf#readme",
   "dependencies": {
+    "@types/uuid": "^7.0.2",
     "apollo-server-express": "^2.12.0",
     "bcryptjs": "^2.4.3",
     "eslint-plugin-prettier": "^3.1.3",
@@ -32,8 +47,17 @@
     "uuid": "^7.0.3"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "@types/bluebird": "^3.5.30",
+    "@types/express": "^4.17.6",
+    "@types/node": "^13.13.2",
+    "@types/validator": "github:types/validator",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.1",
-    "nodemon": "^2.0.3"
+    "eslint-plugin-import": "^2.20.2",
+    "nodemon": "^2.0.3",
+    "ts-node": "^8.9.0",
+    "tslint": "^6.1.1",
+    "typescript": "^3.8.3"
   }
 }
