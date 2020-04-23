@@ -17,13 +17,13 @@ const server = new ApolloServer({
     typeDefs: schema,
     resolvers,
     context: async ({ req }) => {
-      const user = await getUserFromRequestIfLoggedIn(req)
-
-      return {
-          user,
-          models: generateModels(user),
-          factories: factories 
-      }
+        const user = await getUserFromRequestIfLoggedIn(req)
+        
+        return {
+            user: user,
+            models: generateModels(user),
+            factories: factories 
+        }
     }
 })
 server.applyMiddleware({ app })

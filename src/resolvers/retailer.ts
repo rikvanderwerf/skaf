@@ -1,17 +1,17 @@
 import { resolverConfig } from "../lib/authorization"
-
+import { retailerFactory } from "../lib/factories/retailer"
 
 export const retailerResolver = {
 	Query: {
-		retailers: resolverConfig('retailer.list', async (_, args, context) => {
+		retailers: resolverConfig('retailer.list', retailerFactory, async (_, args, context) => {
 			return await context.models.retailer.list(args.retailerInput) || []
 		})
 	},
 	Mutation: {
-		createRetailer: resolverConfig('retailer.post', async (_, args, context) => {
+		createRetailer: resolverConfig('retailer.post', retailerFactory, async (_, args, context) => {
 			return await context.models.retailer.create(args.retailerInput)
 		}),
-		updateRetailer: resolverConfig('retailer.put', async (_, args, context) => {
+		updateRetailer: resolverConfig('retailer.put', retailerFactory, async (_, args, context) => {
 			return await context.models.retailer.put(args.id, args.retailerInput)
 		})
 	}

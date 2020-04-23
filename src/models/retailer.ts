@@ -8,10 +8,8 @@ export class Retailer extends Model {
 	public name!: string
 	public userCreatedId!: string
 
-	acl() {
-		return {
-			'user:${userCreatedId}': ['retailers.put']
-		}
+	acl = {
+		'user:${userCreatedId}': ['retailers.put']
 	}
 }
 
@@ -48,7 +46,7 @@ function createRetailer(retailerInput) {
     return Retailer.create(retailerInput)
 }
 
-function getRetailer(id) {
+export function getRetailer(id) {
 	return Retailer.findOne({
 		where:{
 			id: id
