@@ -27,18 +27,14 @@ Retailer.init({
 		type: DataTypes.UUID,
 		allowNull: false,
 		field: "user_created_id",
-		// references: {
-		// 	model: User,
-		// 	key: 'id'
-		// }
 	}
 }, {
 	sequelize: sequelize
 })
 
-const Shops = Retailer.hasMany(Store, {
+const RetailerStores = Retailer.hasMany(Store, {
 	foreignKey: 'retailer_id',
-		as: 'shops'
+		as: 'store'
 	}
 )
 
