@@ -45,9 +45,11 @@ function createUser(userInput) {
 	return User.create(userInput)
 }
 
-export function getUser(userInput) {
+export function getUser(id) {
 	return User.findOne({
-		where: userInput
+		where: {
+			id: id
+		} 
 	})
 }
 

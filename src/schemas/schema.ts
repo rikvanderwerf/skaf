@@ -25,10 +25,11 @@ const rootQuery = gql`
 		productTypes(productTypeInput: ProductTypeInput): [ProductType!]!
 
 		# retailer
+		retailer(id: ID): Retailer!
 		retailers(retailerInput: RetailerInput): [Retailer!]!
-		getRetailer(id: ID): Retailer!
 
 		# store
+		store(id): Store!
 		stores(storeInput: storeInput): [Store!]!
 	}
 `

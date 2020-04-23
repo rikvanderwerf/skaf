@@ -1,7 +1,5 @@
 import { acl } from "./factories"
 import { getRetailer } from "../../models/retailer"
-import { User } from "../../models/user"
-
 
 export const retailerFactory = (id) => {
     const _acl = {

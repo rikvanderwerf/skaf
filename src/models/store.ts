@@ -35,7 +35,7 @@ function createStore(storeInput) {
     return Store.create(storeInput)
 }
 
-function getStore(storeInput) {
+export function getStore(storeInput) {
     return Store.findOne({
         where: storeInput
     })
