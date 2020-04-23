@@ -5,7 +5,6 @@ import { generateModels} from './models/models'
 import { resolvers } from './resolvers/resolver'
 import { sequelize } from './database/database'
 import { schema } from './schemas/schema'
-import { factories } from './lib/factories/factories'
 
 const app = express();
 
@@ -21,8 +20,7 @@ const server = new ApolloServer({
         
         return {
             user: user,
-            models: generateModels(user),
-            factories: factories 
+            models: generateModels(user)
         }
     }
 })

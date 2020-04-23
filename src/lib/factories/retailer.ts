@@ -1,4 +1,4 @@
-import { containsAcl } from "./factories"
+import { acl } from "./factories"
 import { getRetailer } from "../../models/retailer"
 import { User } from "../../models/user"
 
@@ -15,7 +15,7 @@ export const retailerFactory = (id) => {
         _acl,
         model
     }
-    return Object.assign(self, containsAcl(self))
+    return Object.assign(self, acl(self))
 }
 
 
