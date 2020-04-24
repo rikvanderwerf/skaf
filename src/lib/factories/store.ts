@@ -1,5 +1,5 @@
 import { acl } from "./factories"
-import { getStore } from "../../models/store"
+import { getStoreById } from "../../models/store"
 
 export const storeFactory = (id) => {
     const _acl = {
@@ -7,7 +7,7 @@ export const storeFactory = (id) => {
         'authenticated': ['store.post'] 
     }
 
-    const model = getStore(id)
+    const model = getStoreById(id)
 
     const self = {
         _acl,

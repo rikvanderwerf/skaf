@@ -8,9 +8,14 @@ export class Retailer extends Model {
 	public name!: string
 	public userCreatedId!: string
 
-	acl = {
-		'user:${userCreatedId}': ['retailers.put']
-	}
+	_acl = () => {
+		const user = `user:${this.userCreatedId}`
+        return {
+            user : ['retailer.put']
+        }
+    }
+
+	acl = this._acl()
 }
 
 Retailer.init({
@@ -32,11 +37,12 @@ Retailer.init({
 	sequelize: sequelize
 })
 
-const RetailerStores = Retailer.hasMany(Store, {
+Retailer.hasMany(Store, {
 		foreignKey: 'retailer_id',
 		as: 'store'
 	}
 )
+
 
 function createRetailer(retailerInput) {
     return Retailer.create(retailerInput)
@@ -56,20 +62,6 @@ function listRetailers(retailerInput) {
 	})
 }
 
-function putRetailer(id, retailerInput) {
-	return Retailer.update(
-		retailerInput, 	
-		{
-			where: {
-				id: id
-			},
-			returning: true
-		}
-	  ).then(([_, updatedRetailer]) => {
-		  return updatedRetailer
-	  })
-}
-
 export const generateRetailerModel = (user) => ({
 	create: (retailerInput) => {
 		retailerInput.userCreatedId = user.id
@@ -80,10 +72,6 @@ export const generateRetailerModel = (user) => ({
 	},
 	list: (retailerInput) => {
 		return listRetailers(retailerInput)
-	},
-	put: async (id, retailerInput) => {
-		const updatedList = await putRetailer(id, retailerInput)
-		return updatedList[0]
-	},
+	}
 })
 

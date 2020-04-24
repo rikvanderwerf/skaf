@@ -41,6 +41,7 @@ const rootMutation = gql`
 
 		# store
 		createStore(storeInput: storeInput): Store!
+		updateStore(id: ID, storeInput: storeInput): Store!
 
 		# user
 		createUser(userInput: UserInput): User!

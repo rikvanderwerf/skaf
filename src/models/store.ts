@@ -2,12 +2,26 @@ import { DataTypes, Model } from 'sequelize'
 import { Retailer } from './retailer'
 import { sequelize } from '../database/database'
 import { Location } from './location'
-import { Product } from './product'
 
 export class Store extends Model {
     public id!: string 
     public name!: string
     public retailerId!: string
+
+    retailer = () => {
+        return Retailer.findOne({where: {id: this.retailerId}})
+    }
+
+    _acl = async() => {
+        const retailer = await this.retailer()
+        const user = `user:${retailer.userCreatedId}`
+        
+        return {
+            user : ['store.put']
+        }
+    }
+
+    acl = this._acl()
 }
 
 Store.init({
@@ -19,6 +33,11 @@ Store.init({
     name: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    retailerId: {
+        type: DataTypes.UUID,
+        allowNull: false,
+        field: "retailer_id"
     }
 }, {
     sequelize: sequelize
@@ -32,9 +51,11 @@ function createStore(storeInput) {
     return Store.create(storeInput)
 }
 
-export function getStore(storeInput) {
+export function getStoreById(id) {
     return Store.findOne({
-        where: storeInput
+        where: {
+            id: id
+        }
     })
 }
 
@@ -49,7 +70,7 @@ export const generateStoreModel = (user) => ({
         return createStore(storeInput)
     },
     get: (storeInput) => {
-        return getStore(storeInput)
+        return getStoreById(storeInput)
     },
     list: (storeInput) => {
         return listStores(storeInput)

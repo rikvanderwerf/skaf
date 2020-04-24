@@ -13,7 +13,10 @@ export const storeResolver = {
 	},
 	Mutation: {
 		createStore: resolverConfig('store.create', storeFactory, async (_, args, context) => {
-			return await context.models.store.create(args.storeInput)
+			return context.models.store.create(args.storeInput)
+		}),
+		updateStore: resolverConfig('store.put', storeFactory, async (_, args, context) => {
+			return context.model.update(args.retailerInput)
 		})
 	}
 }

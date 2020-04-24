@@ -6,12 +6,15 @@ export const storeSchema = gql`
 		createdAt: String!
 		updatedAt: String!
 		name: String!
+		retailerId: String!
+		retailer: Retailer
 		location: Location
 	}
 
 	input storeInput {
-        name: String!
+        name: String
 		location: LocationInput
+		retailerId: ID
 	}
 `
 
