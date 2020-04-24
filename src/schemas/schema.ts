@@ -1,7 +1,6 @@
 import { addressSchema } from './address'
 import { gql } from 'apollo-server-express'
 import { authSchema } from './auth'
-import { catalogSchema } from './catalog'
 import { locationSchema } from './location'
 import { priceSchema } from './price'
 import { productSchema } from './product'
@@ -14,9 +13,6 @@ const rootQuery = gql`
 	type Query {
 		# auth
 		login(authInput: AuthInput): Auth
-
-		# catalog
-		catalog(catalogInput: CatalogInput): Catalog!
 
 		# product
 		products(productInput: ProductInput): [Product!]!
@@ -36,9 +32,6 @@ const rootQuery = gql`
 
 const rootMutation = gql`
 	type Mutation {
-		# catalog
-		createCatalog(catalogInput: CatalogInput): Catalog!
-
 		# product
 		createProduct(productInput: ProductInput): Product!
 
@@ -68,7 +61,6 @@ export const schema = [
 	addressSchema,
 	authSchema,
 	baseSchema,
-	catalogSchema,
 	locationSchema,
 	priceSchema,
 	productSchema,

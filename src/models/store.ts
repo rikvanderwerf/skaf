@@ -1,11 +1,13 @@
-import { Catalog } from './catalog'
 import { DataTypes, Model } from 'sequelize'
+import { Retailer } from './retailer'
 import { sequelize } from '../database/database'
 import { Location } from './location'
+import { Product } from './product'
 
 export class Store extends Model {
     public id!: string 
     public name!: string
+    public retailerId!: string
 }
 
 Store.init({
@@ -16,7 +18,6 @@ Store.init({
     },
     name: {
         type: DataTypes.STRING,
-        
         allowNull: false
     }
 }, {
@@ -25,10 +26,6 @@ Store.init({
 
 export const StoreLocation = Store.hasOne(Location, {
     foreignKey: 'location_id'
-})
-
-Store.hasOne(Catalog, {
-    foreignKey: 'catalog_id'
 })
 
 function createStore(storeInput) {

@@ -33,7 +33,7 @@ Retailer.init({
 })
 
 const RetailerStores = Retailer.hasMany(Store, {
-	foreignKey: 'retailer_id',
+		foreignKey: 'retailer_id',
 		as: 'store'
 	}
 )

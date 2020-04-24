@@ -4,6 +4,7 @@ import { retailerFactory } from "../lib/factories/retailer"
 export const retailerResolver = {
 	Query: {
 		retailer: resolverConfig('retailer.get', retailerFactory, async (_, args, context) => {
+			// console.log(context.model)
 			return context.model
 		}),
 		retailers: resolverConfig('retailer.list', retailerFactory, async (_, args, context) => {

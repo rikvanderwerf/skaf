@@ -14,7 +14,6 @@ export const acl = (self) => ({
             allAcl = allAcl.concat(model.acl['user:${userId.id}'] || [])
         }
         
-        console.log(allAcl)
         return allAcl.includes(permission)
     }
 })

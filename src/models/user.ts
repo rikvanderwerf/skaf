@@ -18,7 +18,6 @@ User.init({
 		type: DataTypes.STRING,
 		allowNull: false,
 		unique: true,
-		
 		validate: {
 			isEmail: true
 		}
@@ -26,7 +25,6 @@ User.init({
 	password: {
 		type: DataTypes.STRING,
 		allowNull: false,
-		
 		validate: {
 			min: 8
 		}
