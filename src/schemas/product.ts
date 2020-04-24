@@ -12,6 +12,7 @@ export const productSchema = gql`
     input ProductInput {
         name: String!
         productType: ProductTypeInput
+        storeId: String!
     }
 `;
 
