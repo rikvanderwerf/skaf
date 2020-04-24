@@ -42,6 +42,14 @@ function listProducts(productInput) {
 	})
 }
 
+export function getProductById(id) {
+    return Product.findOne({
+        where: {
+            id: id
+        }
+    })
+}
+
 function getProduct(productInput) {
 	return User.findOne({
 		where: productInput

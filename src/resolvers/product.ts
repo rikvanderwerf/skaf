@@ -1,12 +1,16 @@
+import { resolverConfig } from "../lib/authorization"
+import { storeFactory } from "../lib/factories/store"
+import { productFactory } from "../lib/factories/product"
+
 export const productResolver = {
 	Query: {
-		async products(_, args, context) {
+		products: resolverConfig('product.list', productFactory, async (_, args, context) => {
 			return await context.models.product.list(args.productInput) || []
-		}
+		})
 	},
 	Mutation: {
-		async createProduct(_, args, context) {
+		createProduct: resolverConfig('product.post', productFactory, async (_, args, context) => {
 			return await context.models.product.create(args.productInput)
-		}
+		})
 	}
 }

@@ -26,6 +26,6 @@ export const storeResolver = {
 	Store: {
 		products: async (_, args, context) => {
 			return await context.model.getProducts() || []
-		}	
+		}
 	}
 }
