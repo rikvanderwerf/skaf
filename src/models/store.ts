@@ -2,6 +2,7 @@ import { DataTypes, Model } from 'sequelize'
 import { Retailer } from './retailer'
 import { sequelize } from '../database/database'
 import { Location } from './location'
+import { Product } from '../models/product'
 
 export class Store extends Model {
     public id!: string 
@@ -15,7 +16,7 @@ export class Store extends Model {
     _acl = async() => {
         const retailer = await this.retailer()
         const user = `user:${retailer.userCreatedId}`
-        
+
         return {
             user : ['store.put']
         }
@@ -42,6 +43,8 @@ Store.init({
 }, {
     sequelize: sequelize
 })
+
+Store.belongsToMany(Product, {through: 'StoreProduct'});
 
 export const StoreLocation = Store.hasOne(Location, {
     foreignKey: 'location_id'

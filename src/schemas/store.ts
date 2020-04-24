@@ -9,6 +9,7 @@ export const storeSchema = gql`
 		retailerId: String!
 		retailer: Retailer
 		location: Location
+		products: [Product!]
 	}
 
 	input storeInput {

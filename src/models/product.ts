@@ -2,7 +2,6 @@ import { DataTypes, Model } from 'sequelize'
 import { Price } from './price'
 import { ProductType } from './product_type'
 import { sequelize } from '../database/database'
-import { Store } from './store'
 import { User } from './user'
 
 export class Product extends Model {
@@ -24,7 +23,6 @@ Product.init({
     sequelize: sequelize
 })
 
-Product.belongsToMany(Store, {through: 'StoreProduct'});
 
 export const ProductPrice = Product.hasOne(Price, {
     foreignKey: 'price_id'
