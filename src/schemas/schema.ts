@@ -25,7 +25,7 @@ const rootQuery = gql`
 		retailers(retailerInput: RetailerInput): [Retailer!]!
 
 		# store
-		store(id): Store!
+		store(id: ID): Store!
 		stores(storeInput: storeInput): [Store!]!
 	}
 `

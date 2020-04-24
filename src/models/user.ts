@@ -43,11 +43,17 @@ function createUser(userInput) {
 	return User.create(userInput)
 }
 
-export function getUser(id) {
+export function getUserById(id) {
 	return User.findOne({
 		where: {
 			id: id
 		} 
+	})
+}
+
+export function getUser(userInput) {
+	return User.findOne({
+		where: userInput
 	})
 }
 
@@ -62,7 +68,7 @@ export const generateUserModel = (user) => ({
 		return createUser(userInput)
 	},
 	get: (userInput) => {
-		return getUser(userInput)
+		return getUserById(userInput)
 	},
 	list: (userInput) => {
 		return listUsers(userInput)
