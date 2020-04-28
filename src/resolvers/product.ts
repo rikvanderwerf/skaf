@@ -1,7 +1,5 @@
 import { resolverConfig } from "../lib/authorization"
-import { storeFactory } from "../lib/factories/store"
 import { productFactory } from "../lib/factories/product"
-import { getStoreById } from "../models/store"
 
 export const productResolver = {
 	Query: {
