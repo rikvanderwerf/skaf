@@ -1,12 +1,21 @@
+import { resolverConfig } from "../lib/authorization"
+import { storeFactory } from "../lib/factories/store"
+import { productFactory } from "../lib/factories/product"
+import { getStoreById } from "../models/store"
+
 export const productResolver = {
 	Query: {
-		async products(_, args, context) {
+		products: resolverConfig('product.list', productFactory, async (_, args, context) => {
 			return await context.models.product.list(args.productInput) || []
-		}
+		})
 	},
 	Mutation: {
-		async createProduct(_, args, context) {
-			return await context.models.product.create(args.productInput)
-		}
+		createProduct: resolverConfig('product.post', productFactory, async (_, args, context) => {
+			const product = await context.models.product.create(args.productInput)
+			if (args.productInput.storeId) {
+				await product.addStore(args.productInput.storeId)
+			}
+			return product
+		})
 	}
 }

@@ -1,35 +1,38 @@
-import { DataTypes, Model } from 'sequelize'
-import { Price } from './price'
-import { ProductType } from './product_type'
-import { sequelize } from '../database/database'
+import { Model } from 'sequelize'
 import { User } from './user'
 
 export class Product extends Model {
     public id!: string
     public name!: string
-}
 
-Product.init({
-    id: {
-		primaryKey: true,
-		type: DataTypes.UUID,
-		defaultValue: DataTypes.UUIDV4
-    },
-    name: {
-        type: DataTypes.STRING,
-        allowNull: false
+    static init(sequelize, DataTypes) {
+        return super.init.call(this, {
+            id: {
+                primaryKey: true,
+                type: DataTypes.UUID,
+                defaultValue: DataTypes.UUIDV4
+            },
+            name: {
+                type: DataTypes.STRING,
+                allowNull: false
+            }
+        }, {
+            sequelize: sequelize
+        })
     }
-}, {
-    sequelize: sequelize
-})
 
-export const ProductPrice = Product.hasOne(Price, {
-    foreignKey: 'price_id'
-})
-
-export const ProductProductType = Product.hasOne(ProductType, {
-    foreignKey: 'product_type_id'
-})
+    static associate(models) {
+        Product.belongsToMany(models.Store, {
+            through: 'StoreProduct'
+        })
+        this.hasOne(models.Price, {
+            foreignKey: 'price_id'
+        })
+        this.hasOne(models.ProductType, {
+            foreignKey: 'product_type_id'
+        })
+    }
+}
 
 function createProduct(productInput) {
 	return Product.create(productInput)
@@ -39,6 +42,14 @@ function listProducts(productInput) {
 	return Product.findAll({
 		where: productInput
 	})
+}
+
+export function getProductById(id) {
+    return Product.findOne({
+        where: {
+            id: id
+        }
+    })
 }
 
 function getProduct(productInput) {
