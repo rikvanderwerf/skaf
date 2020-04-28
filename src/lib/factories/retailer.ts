@@ -3,8 +3,8 @@ import { getRetailer } from "../../models/retailer"
 
 export const retailerFactory = (id) => {
     const _acl = {
-        'everyone': ['retailers.get', 'retailers.list'], 
-        'authenticated': ['retailers.post'] 
+        'everyone': ['retailer.get', 'retailer.list'], 
+        'authenticated': ['retailer.post'] 
     }
 
     const model = getRetailer(id)
