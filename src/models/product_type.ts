@@ -14,7 +14,11 @@ export class ProductType extends Model {
             name: {
                 type: DataTypes.STRING,
                 allowNull: false,
-                unique: false,
+                unique: true,
+            },
+            product_type_parent_id: {
+                type: DataTypes.UUID,
+                allowNull: true,
             }
         }, {
             sequelize: sequelize
@@ -37,6 +41,10 @@ function listProductTypes(productTypeInput) {
     return ProductType.findAll({
         where: productTypeInput
     })
+}
+
+export function createProductType(productTypeInput) {
+    return ProductType.create(productTypeInput)
 }
 
 export const generateProductTypeModel = (user) => ({

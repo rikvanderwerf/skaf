@@ -4,6 +4,7 @@ import { User } from './user'
 export class Product extends Model {
     public id!: string
     public name!: string
+    public description!: string
 
     static init(sequelize, DataTypes) {
         return super.init.call(this, {
@@ -14,7 +15,12 @@ export class Product extends Model {
             },
             name: {
                 type: DataTypes.STRING,
-                allowNull: false
+                allowNull: false,
+                unique: true
+            },
+            product_type_id: {
+                type: DataTypes.UUID,
+                allowNull: false,
             }
         }, {
             sequelize: sequelize
@@ -22,8 +28,14 @@ export class Product extends Model {
     }
 
     static associate(models) {
-        Product.belongsToMany(models.Store, {
+        this.belongsToMany(models.Store, {
             through: 'StoreProduct'
+        })
+        this.belongsToMany(models.Flavor, {
+            through: 'ProductFlavor'
+        })
+        this.belongsToMany(models.Effect, {
+            through: 'ProductEffects'
         })
         this.hasOne(models.Price, {
             foreignKey: 'price_id'
@@ -34,8 +46,9 @@ export class Product extends Model {
     }
 }
 
-function createProduct(productInput) {
-	return Product.create(productInput)
+export async function createProduct(productInput) {
+    const product = await Product.create(productInput)
+    return product
 }
 
 function listProducts(productInput) {

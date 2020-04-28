@@ -7,11 +7,15 @@ import { ProductType } from '../models/product_type'
 import { Retailer } from '../models/retailer'
 import { User } from '../models/user'
 import { Location } from '../models/location'
+import { Flavor } from '../models/flavor'
+import { Effect } from '../models/effect'
 
 export const sequelize = new Sequelize('postgres://login_role:password@postgresql_db:5432/postgres')
 
 const models = {
     'Address': Address.init(sequelize, Sequelize),
+    'Effect': Effect.init(sequelize, Sequelize),
+    'Flavor': Flavor.init(sequelize, Sequelize),
     'Location': Location.init(sequelize, Sequelize),
     'Price': Price.init(sequelize, Sequelize),
     'Product': Product.init(sequelize, Sequelize),

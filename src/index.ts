@@ -5,12 +5,15 @@ import { generateModels} from './models/models'
 import { resolvers } from './resolvers/resolver'
 import { schema } from './schemas/schema'
 import { sequelize } from './database/database'
+import { addStrainstoDatabase } from './lib/scripts/strain_filler'
 
 const app = express();
 
 app.use(express.json())
 
 sequelize.sync()
+
+addStrainstoDatabase()
 
 const server = new ApolloServer({
     typeDefs: schema,
