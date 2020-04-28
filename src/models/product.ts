@@ -30,12 +30,12 @@ export class Product extends Sequelize.Model {
         this.belongsToMany(models.Store, {
             through: 'storeProduct'
         })
-        // this.hasOne(models.Price, {
-        //     foreignKey: 'price_id'
-        // })
-        // this.hasOne(models.ProductType, {
-        //     foreignKey: 'product_type_id'
-        // })
+        this.hasOne(models.Price, {
+            foreignKey: 'price_id'
+        })
+        this.hasOne(models.ProductType, {
+            foreignKey: 'product_type_id'
+        })
     }
 }
 

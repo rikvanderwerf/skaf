@@ -25,9 +25,8 @@ export class Location extends Model {
     }
 
     static associate(models) {
-        console.timeLog(models)
-        // this.hasOne(models.Address, {
-        //     foreignKey: 'address_id'
-        // })        
+        this.hasOne(models.Address, {
+            foreignKey: 'address_id'
+        })        
     }
 }

@@ -29,11 +29,10 @@ export class Retailer extends Model {
     }
 
     static associate(models) {
-		console.log("*******")
-		// this.hasMany(models.Store, {
-		// 	foreignKey: 'retailer_id',
-		// 	as: 'store'
-		// })
+		this.hasMany(models.Store, {
+			foreignKey: 'retailer_id',
+			as: 'store'
+		})
     }
 
 	_acl = () => {

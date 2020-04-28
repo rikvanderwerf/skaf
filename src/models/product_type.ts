@@ -22,10 +22,10 @@ export class ProductType extends Model {
     }
 
     static associate(models) {
-        // this.belongsTo(models.ProductType, {
-        //     as: 'parent',
-        //     foreignKey: 'product_type_parent_id'
-        // })
+        this.belongsTo(models.ProductType, {
+            as: 'parent',
+            foreignKey: 'product_type_parent_id'
+        })
     }
 }
 

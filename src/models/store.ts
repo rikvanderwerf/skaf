@@ -11,7 +11,6 @@ export class Store extends Sequelize.Model {
     public retailerId!: string
 
     static init(sequelize, DataTypes) {
-        console.log(DataTypes)
         return super.init.call(this, {
             id: {
                 primaryKey: true,
@@ -31,7 +30,7 @@ export class Store extends Sequelize.Model {
     }
 
     static associate(models) {
-        models.Store.belongsToMany(models.Product, {
+        this.belongsToMany(models.Product, {
             through: 'StoreProduct'
         })
     }
