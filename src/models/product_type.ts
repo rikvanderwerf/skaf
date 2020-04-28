@@ -1,12 +1,11 @@
 import { DataTypes, Model } from 'sequelize'
-import { sequelize } from '../database/database'
 
 export class ProductType extends Model {
     public id!: string
     public name!: string
 
     static init(sequelize, DataTypes) {
-        super.init.call(this, {
+        return super.init.call(this, {
             id: {
                 primaryKey: true,
                 type: DataTypes.UUID,
@@ -23,10 +22,10 @@ export class ProductType extends Model {
     }
 
     static associate(models) {
-        ProductType.belongsTo(models.ProductType, {
-            as: 'parent',
-            foreignKey: 'product_type_parent_id'
-        })
+        // this.belongsTo(models.ProductType, {
+        //     as: 'parent',
+        //     foreignKey: 'product_type_parent_id'
+        // })
     }
 }
 

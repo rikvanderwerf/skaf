@@ -1,15 +1,17 @@
 import { DataTypes, Model } from 'sequelize'
 import { Retailer } from './retailer'
-import { sequelize } from '../database/database'
 import { Location } from './location'
 import { Product } from '../models/product'
 
-export class Store extends Model {
+const Sequelize = require("sequelize");
+
+export class Store extends Sequelize.Model {
     public id!: string 
     public name!: string
     public retailerId!: string
 
     static init(sequelize, DataTypes) {
+        console.log(DataTypes)
         return super.init.call(this, {
             id: {
                 primaryKey: true,
@@ -25,11 +27,11 @@ export class Store extends Model {
                 allowNull: false,
                 field: "retailer_id"
             }
-        }, {sequelize})
+        }, {sequelize: sequelize})
     }
 
     static associate(models) {
-        Store.belongsToMany(models.Product, {
+        models.Store.belongsToMany(models.Product, {
             through: 'StoreProduct'
         })
     }
@@ -50,9 +52,6 @@ export class Store extends Model {
     acl = this._acl()
 }
 
-export const StoreLocation = Store.hasOne(Location, {
-    foreignKey: 'location_id'
-})
 
 function createStore(storeInput) {
     return Store.create(storeInput)

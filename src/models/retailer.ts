@@ -1,5 +1,4 @@
 import { DataTypes, Model } from 'sequelize'
-import { sequelize } from '../database/database'
 import { Store } from './store'
 import { User } from './user'
 
@@ -30,11 +29,11 @@ export class Retailer extends Model {
     }
 
     static associate(models) {
-		Retailer.hasMany(models.Store, {
-			foreignKey: 'retailer_id',
-			as: 'store'
-		}
-	)
+		console.log("*******")
+		// this.hasMany(models.Store, {
+		// 	foreignKey: 'retailer_id',
+		// 	as: 'store'
+		// })
     }
 
 	_acl = () => {

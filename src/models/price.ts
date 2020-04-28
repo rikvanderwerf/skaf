@@ -1,5 +1,4 @@
 import { DataTypes, Model } from 'sequelize'
-import { sequelize } from '../database/database'
 
 export class Price extends Model {
     public id!: string

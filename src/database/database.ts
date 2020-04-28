@@ -1,17 +1,31 @@
-import { Sequelize, Model } from 'sequelize'
+import { Sequelize, Model, DataTypes } from 'sequelize'
 import { Product } from '../models/product'
 import { Store } from '../models/store'
+import { Address } from '../models/address'
+import { Price } from '../models/price'
+import { ProductType } from '../models/product_type'
+import { Retailer } from '../models/retailer'
+import { User } from '../models/user'
+import { Location } from '../models/location'
 
-export const sequelize = new Sequelize('postgres://login_role:password@postgresql_db:5432/postgres')
+const sequelize = new Sequelize('postgres://login_role:password@postgresql_db:5432/postgres')
 
 const models = {
-    'Product': Product,
-    'Store': Store,
+    'Address': Address.init(sequelize, Sequelize),
+    'Location': Location.init(sequelize, Sequelize),
+    'Price': Price.init(sequelize, Sequelize),
+    'product': Product.init(sequelize, Sequelize),
+    'ProdyctType': ProductType.init(sequelize, Sequelize),
+    'Retailer': Retailer.init(sequelize, Sequelize),
+    'Store': Store.init(sequelize, Sequelize),
+    'User': User.init(sequelize, Sequelize)
 }
 
-Object.values(models)
+const filtered = Object.values(models)
     .filter(model => typeof model.associate === 'function')
-    .forEach(model => model.associate(models))
+    .forEach(model => typeof model.associate(models))
+
+sequelize.sync()
 
 export const db = {
     ...models,

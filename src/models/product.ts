@@ -1,11 +1,12 @@
 import { DataTypes, Model } from 'sequelize'
 import { Price } from './price'
 import { ProductType } from './product_type'
-import { sequelize } from '../database/database'
 import { User } from './user'
 import { Store } from './store'
 
-export class Product extends Model {
+const Sequelize = require("sequelize");
+
+export class Product extends Sequelize.Model {
     public id!: string
     public name!: string
 
@@ -24,22 +25,19 @@ export class Product extends Model {
             sequelize: sequelize
         })
     }
-    
 
     static associate(models) {
-        Product.belongsToMany(Store, {
+        this.belongsToMany(models.Store, {
             through: 'storeProduct'
         })
+        // this.hasOne(models.Price, {
+        //     foreignKey: 'price_id'
+        // })
+        // this.hasOne(models.ProductType, {
+        //     foreignKey: 'product_type_id'
+        // })
     }
 }
-
-export const ProductPrice = Product.hasOne(Price, {
-    foreignKey: 'price_id'
-})
-
-export const ProductProductType = Product.hasOne(ProductType, {
-    foreignKey: 'product_type_id'
-})
 
 function createProduct(productInput) {
 	return Product.create(productInput)

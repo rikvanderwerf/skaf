@@ -1,6 +1,5 @@
 import { Address } from './address'
 import { DataTypes, Model } from 'sequelize'
-import { sequelize } from '../database/database'
 
 export class Location extends Model {
     public id!: string
@@ -26,8 +25,9 @@ export class Location extends Model {
     }
 
     static associate(models) {
-        Location.hasOne(Address, {
-            foreignKey: 'address_id'
-        })        
+        console.timeLog(models)
+        // this.hasOne(models.Address, {
+        //     foreignKey: 'address_id'
+        // })        
     }
 }
