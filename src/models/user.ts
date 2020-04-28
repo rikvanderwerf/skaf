@@ -1,5 +1,4 @@
-import { DataTypes, Model } from 'sequelize'
-import { Retailer } from './retailer'
+import { Model } from 'sequelize'
 
 export class User extends Model {
 	public id!: string
@@ -36,8 +35,8 @@ export class User extends Model {
 
 	static associate(models) {
 		this.hasMany(models.Retailer, {
-			foreignKey: "user_created_id",
-			as: "Retailers"
+			foreignKey: "owner_id",
+			as: "retailers"
 		})
 	}
 }

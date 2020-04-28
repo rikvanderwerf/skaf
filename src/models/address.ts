@@ -1,4 +1,4 @@
-import { DataTypes, Model } from 'sequelize'
+import { Model } from 'sequelize'
 
 export class Address extends Model {
     public id!: string

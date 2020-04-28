@@ -1,7 +1,5 @@
-import { DataTypes, Model } from 'sequelize'
+import { Model } from 'sequelize'
 import { Retailer } from './retailer'
-import { Location } from './location'
-import { Product } from '../models/product'
 
 export class Store extends Model {
     public id!: string 

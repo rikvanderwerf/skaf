@@ -1,8 +1,5 @@
-import { DataTypes, Model } from 'sequelize'
-import { Price } from './price'
-import { ProductType } from './product_type'
+import { Model } from 'sequelize'
 import { User } from './user'
-import { Store } from './store'
 
 export class Product extends Model {
     public id!: string

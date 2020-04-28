@@ -1,4 +1,4 @@
-import { DataTypes, Model } from 'sequelize'
+import { Model } from 'sequelize'
 
 export class ProductType extends Model {
     public id!: string
@@ -23,7 +23,11 @@ export class ProductType extends Model {
 
     static associate(models) {
         this.belongsTo(models.ProductType, {
-            as: 'parent',
+            as: 'parentType',
+            foreignKey: 'product_type_parent_id'
+        })
+        this.hasMany(models.ProductType, {
+            as: 'childTypes',
             foreignKey: 'product_type_parent_id'
         })
     }

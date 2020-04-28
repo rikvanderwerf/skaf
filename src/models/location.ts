@@ -1,5 +1,4 @@
-import { Address } from './address'
-import { DataTypes, Model } from 'sequelize'
+import { Model } from 'sequelize'
 
 export class Location extends Model {
     public id!: string
