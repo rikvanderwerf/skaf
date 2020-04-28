@@ -6,24 +6,28 @@ export class Location extends Model {
     public id!: string
     public latitude: string
     public longitude: string
-}
 
-Location.init({
-    id: {
-		primaryKey: true,
-		type: DataTypes.UUID,
-		defaultValue: DataTypes.UUIDV4
-    },
-    latitude: {
-        type: DataTypes.DECIMAL,
-    },
-    longitude: {
-        type: DataTypes.DECIMAL,
+    static init(sequelize, DataTypes) {
+        return super.init.call(this, {
+           id: {
+                primaryKey: true,
+                type: DataTypes.UUID,
+                defaultValue: DataTypes.UUIDV4
+            },
+            latitude: {
+                type: DataTypes.DECIMAL,
+            },
+            longitude: {
+                type: DataTypes.DECIMAL,
+            }
+        }, {
+            sequelize: sequelize
+        })
     }
-}, {
-    sequelize: sequelize
-})
 
-export const LocationAddress = Location.hasOne(Address, {
-    foreignKey: 'address_id'
-})
+    static associate(models) {
+        Location.hasOne(Address, {
+            foreignKey: 'address_id'
+        })        
+    }
+}

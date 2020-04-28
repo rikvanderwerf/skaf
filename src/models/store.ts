@@ -9,10 +9,29 @@ export class Store extends Model {
     public name!: string
     public retailerId!: string
 
+    static init(sequelize, DataTypes) {
+        return super.init.call(this, {
+            id: {
+                primaryKey: true,
+                type: DataTypes.UUID,
+                defaultValue: DataTypes.UUIDV4
+            },
+            name: {
+                type: DataTypes.STRING,
+                allowNull: false
+            },
+            retailerId: {
+                type: DataTypes.UUID,
+                allowNull: false,
+                field: "retailer_id"
+            }
+        }, {sequelize})
+    }
+
     static associate(models) {
         Store.belongsToMany(models.Product, {
             through: 'StoreProduct'
-        });
+        })
     }
 
     retailer = () => {
@@ -30,26 +49,6 @@ export class Store extends Model {
 
     acl = this._acl()
 }
-
-Store.init({
-    id: {
-		primaryKey: true,
-		type: DataTypes.UUID,
-		defaultValue: DataTypes.UUIDV4
-    },
-    name: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    retailerId: {
-        type: DataTypes.UUID,
-        allowNull: false,
-        field: "retailer_id"
-    }
-}, {
-    sequelize: sequelize
-})
-
 
 export const StoreLocation = Store.hasOne(Location, {
     foreignKey: 'location_id'

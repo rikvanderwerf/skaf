@@ -9,26 +9,29 @@ export class Product extends Model {
     public id!: string
     public name!: string
 
+    static init(sequelize, DataTypes) {
+        return super.init.call(this, {
+            id: {
+                primaryKey: true,
+                type: DataTypes.UUID,
+                defaultValue: DataTypes.UUIDV4
+            },
+            name: {
+                type: DataTypes.STRING,
+                allowNull: false
+            }
+        }, {
+            sequelize: sequelize
+        })
+    }
+    
+
     static associate(models) {
         Product.belongsToMany(Store, {
             through: 'storeProduct'
         })
     }
 }
-
-Product.init({
-    id: {
-		primaryKey: true,
-		type: DataTypes.UUID,
-		defaultValue: DataTypes.UUIDV4
-    },
-    name: {
-        type: DataTypes.STRING,
-        allowNull: false
-    }
-}, {
-    sequelize: sequelize
-})
 
 export const ProductPrice = Product.hasOne(Price, {
     foreignKey: 'price_id'

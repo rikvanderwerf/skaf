@@ -8,6 +8,35 @@ export class Retailer extends Model {
 	public name!: string
 	public userCreatedId!: string
 
+	static init(sequelize, DataTypes) {
+        return super.init.call(this, {
+			id: {
+				primaryKey: true,
+				type: DataTypes.UUID,
+				defaultValue: DataTypes.UUIDV4
+			},
+			name: {
+				type: DataTypes.STRING,
+				allowNull: false
+			},
+			userCreatedId: {
+				type: DataTypes.UUID,
+				allowNull: false,
+				field: "user_created_id",
+			}
+		}, {
+			sequelize: sequelize
+		})
+    }
+
+    static associate(models) {
+		Retailer.hasMany(models.Store, {
+			foreignKey: 'retailer_id',
+			as: 'store'
+		}
+	)
+    }
+
 	_acl = () => {
 		const user = `user:${this.userCreatedId}`
         return {
@@ -17,32 +46,6 @@ export class Retailer extends Model {
 
 	acl = this._acl()
 }
-
-Retailer.init({
-	id: {
-		primaryKey: true,
-		type: DataTypes.UUID,
-		defaultValue: DataTypes.UUIDV4
-	},
-	name: {
-		type: DataTypes.STRING,
-		allowNull: false
-	},
-	userCreatedId: {
-		type: DataTypes.UUID,
-		allowNull: false,
-		field: "user_created_id",
-	}
-}, {
-	sequelize: sequelize
-})
-
-Retailer.hasMany(Store, {
-		foreignKey: 'retailer_id',
-		as: 'store'
-	}
-)
-
 
 function createRetailer(retailerInput) {
     return Retailer.create(retailerInput)

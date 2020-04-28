@@ -6,38 +6,42 @@ export class User extends Model {
 	public id!: string
 	public email!: string
 	public password!: string
-}
 
-User.init({
-	id: {
-		primaryKey: true,
-		type: DataTypes.UUID,
-		defaultValue: DataTypes.UUIDV4
-	},
-	email: {
-		type: DataTypes.STRING,
-		allowNull: false,
-		unique: true,
-		validate: {
-			isEmail: true
-		}
-	},
-	password: {
-		type: DataTypes.STRING,
-		allowNull: false,
-		validate: {
-			min: 8
-		}
+	static init(sequelize, DataTypes) {
+		return super.init.call(this, {
+			id: {
+				primaryKey: true,
+				type: DataTypes.UUID,
+				defaultValue: DataTypes.UUIDV4
+			},
+			email: {
+				type: DataTypes.STRING,
+				allowNull: false,
+				unique: true,
+				validate: {
+					isEmail: true
+				}
+			},
+			password: {
+				type: DataTypes.STRING,
+				allowNull: false,
+				validate: {
+					min: 8
+				}
+			}
+		}, {
+			sequelize: sequelize,
+			underscored: true
+		})
 	}
-}, {
-	sequelize: sequelize,
-	underscored: true
-})
 
-User.hasMany(Retailer, {
-	foreignKey: "user_created_id",
-	as: "Retailers"
-})
+	static associate(models) {
+		User.hasMany(models.Retailer, {
+			foreignKey: "user_created_id",
+			as: "Retailers"
+		})
+	}
+}
 
 function createUser(userInput) {
 	return User.create(userInput)
