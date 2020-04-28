@@ -3,10 +3,17 @@ import { Price } from './price'
 import { ProductType } from './product_type'
 import { sequelize } from '../database/database'
 import { User } from './user'
+import { Store } from './store'
 
 export class Product extends Model {
     public id!: string
     public name!: string
+
+    static associate(models) {
+        Product.belongsToMany(Store, {
+            through: 'storeProduct'
+        })
+    }
 }
 
 Product.init({
@@ -22,7 +29,6 @@ Product.init({
 }, {
     sequelize: sequelize
 })
-
 
 export const ProductPrice = Product.hasOne(Price, {
     foreignKey: 'price_id'

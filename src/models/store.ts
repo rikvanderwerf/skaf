@@ -9,8 +9,14 @@ export class Store extends Model {
     public name!: string
     public retailerId!: string
 
+    static associate(models) {
+        Store.belongsToMany(models.Product, {
+            through: 'StoreProduct'
+        });
+    }
+
     retailer = () => {
-        return Retailer.findOne({where: {id: this.retailerId}})
+        return Retailer.findOne()
     }
 
     _acl = async() => {
@@ -44,7 +50,6 @@ Store.init({
     sequelize: sequelize
 })
 
-Store.belongsToMany(Product, {through: 'StoreProduct'});
 
 export const StoreLocation = Store.hasOne(Location, {
     foreignKey: 'location_id'
