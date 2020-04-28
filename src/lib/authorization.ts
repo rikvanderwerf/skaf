@@ -10,7 +10,7 @@ export const resolverConfig = (permission, factory, resolver) => async (parent, 
     // So the caller does not have to reach deep.
     context.model = model
 
-    if (factoryObject.hasPermission(context.user, permission)) {
+    if (await factoryObject.hasPermission(context.user, permission)) {
         return resolver(parent, args, context, info)   
     }
 

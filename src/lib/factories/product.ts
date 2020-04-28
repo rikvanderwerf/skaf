@@ -9,7 +9,7 @@ export const productFactory = async (id, args, context) => {
         const retailer  = await store.retailer()
         if (retailer.userCreatedId == context.user.id) {
             const user = `user:${retailer.userCreatedId}`
-            _acl[user] = ['product.put'] 
+            _acl[user] = ['product.post'] 
         }
     }
 
