@@ -3,9 +3,7 @@ import { Retailer } from './retailer'
 import { Location } from './location'
 import { Product } from '../models/product'
 
-const Sequelize = require("sequelize");
-
-export class Store extends Sequelize.Model {
+export class Store extends Model {
     public id!: string 
     public name!: string
     public retailerId!: string
@@ -30,7 +28,7 @@ export class Store extends Sequelize.Model {
     }
 
     static associate(models) {
-        this.belongsToMany(models.Product, {
+        Store.belongsToMany(models.Product, {
             through: 'StoreProduct'
         })
     }

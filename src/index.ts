@@ -4,10 +4,13 @@ import express from 'express'
 import { generateModels} from './models/models'
 import { resolvers } from './resolvers/resolver'
 import { schema } from './schemas/schema'
+import { sequelize } from './database/database'
 
 const app = express();
 
 app.use(express.json())
+
+sequelize.sync()
 
 const server = new ApolloServer({
     typeDefs: schema,
