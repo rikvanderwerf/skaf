@@ -4,8 +4,8 @@ import { Product } from "../models/product"
 
 export const productResolver = {
 	Query: {
-		products: resolverConfig('product.list', productFactory, async (_, args, context) => {
-			return await context.models.product.list(args.productInput) || []
+		products: resolverConfig('product.list', productFactory, async (_, {productInput = {}, pageSize, lastPageKey}, context) => {
+			return await context.models.product.list(productInput, pageSize, lastPageKey) || []
 		})
 	},
 	Mutation: {
@@ -18,10 +18,10 @@ export const productResolver = {
 		})
 	},
 	Product: {
-		flavors: async (parent: Product, _, _) => {
+		flavors: async (parent: Product) => {
 			return parent.getFlavors() || []
 		},
-		effects: async (parent: Product, _, _) => {
+		effects: async (parent: Product) => {
 			return parent.getEffects() || []
 		} 
 	}

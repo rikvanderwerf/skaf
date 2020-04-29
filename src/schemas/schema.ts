@@ -17,7 +17,7 @@ const rootQuery = gql`
 		login(authInput: AuthInput): Auth
 
 		# product
-		products(productInput: ProductInput): [Product!]!
+		products(productInput: ProductInput, pageSize: Int = 20, lastPageKey: ID): [Product!]!
 
 		# product type
 		productTypes(productTypeInput: ProductTypeInput): [ProductType!]!

@@ -1,4 +1,4 @@
-import { Model, BelongsToManyAddAssociationMixin, BelongsToManyGetAssociationsMixin } from 'sequelize'
+import { Model, BelongsToManyAddAssociationMixin, BelongsToManyGetAssociationsMixin, Op } from 'sequelize'
 import { User } from './user'
 import { Flavor } from './flavor'
 import { Effect } from './effect'
@@ -65,10 +65,14 @@ export async function createProduct(productInput) {
     return product
 }
 
-function listProducts(productInput) {
-	return Product.findAll({
-		where: productInput
-	})
+function listProducts(productInput, pageSize) {
+	return Product.findAll(
+        {
+            where: productInput,
+            limit: pageSize,
+            order: [['id', 'DESC']]
+	    }
+    )
 }
 
 export function getProductById(id) {
@@ -86,8 +90,13 @@ function getProduct(productInput) {
 }
 
 export const generateProductModel = (user) => ({
-    list: (productInput) => {
-        return listProducts(productInput)
+    list: (productInput, pageSize, lastPageKey) => {
+        if (lastPageKey) {
+            productInput['id'] = {
+                [Op.lt]: lastPageKey
+            }
+        }
+        return listProducts(productInput, pageSize)
     },
     get: (productInput) => {
         return getProduct(productInput)
