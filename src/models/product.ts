@@ -2,6 +2,7 @@ import { Model, BelongsToManyAddAssociationMixin } from 'sequelize'
 import { User } from './user'
 import { Flavor } from './flavor'
 import { Effect } from './effect'
+import { ProductType } from './product_type'
 
 export class Product extends Model {
     public id!: string
@@ -48,6 +49,10 @@ export class Product extends Model {
         this.hasOne(models.ProductType, {
             foreignKey: 'product_type_id'
         })
+    }
+
+    productType = () => {
+        return ProductType.findOne()
     }
 }
 

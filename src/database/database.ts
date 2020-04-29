@@ -10,9 +10,9 @@ import { Location } from '../models/location'
 import { Flavor } from '../models/flavor'
 import { Effect } from '../models/effect'
 
-export const sequelize = new Sequelize('postgres://login_role:password@postgresql_db:5432/postgres')
+export const sequelize: Sequelize = new Sequelize('postgres://login_role:password@postgresql_db:5432/postgres')
 
-const models = {
+const models: object = {
     'Address': Address.init(sequelize, Sequelize),
     'Effect': Effect.init(sequelize, Sequelize),
     'Flavor': Flavor.init(sequelize, Sequelize),

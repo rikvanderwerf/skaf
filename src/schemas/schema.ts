@@ -8,6 +8,8 @@ import { productTypeSchema } from './product_type'
 import { retailerSchema } from './retailer'
 import { storeSchema } from './store'
 import { userSchema } from './user'
+import { effectSchema } from './effect'
+import { flavorSchema } from './flavor'
 
 const rootQuery = gql`
 	type Query {
@@ -57,11 +59,11 @@ const baseSchema = gql`
 `
 
 export const schema = [
-	rootMutation,
-	rootQuery,
 	addressSchema,
 	authSchema,
 	baseSchema,
+	effectSchema,
+	flavorSchema,
 	locationSchema,
 	priceSchema,
 	productSchema,

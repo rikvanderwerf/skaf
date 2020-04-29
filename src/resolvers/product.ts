@@ -15,5 +15,13 @@ export const productResolver = {
 			}
 			return product
 		})
+	},
+	Product: {
+		flavors: async (parent, args, context) => {
+			return parent.getFlavors() || []
+		},
+		effects: async (parent, args, context) => {
+			return parent.getEffects() || []
+		} 
 	}
 }

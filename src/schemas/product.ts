@@ -7,6 +7,8 @@ export const productSchema = gql`
 		updatedAt: String!
         name: String!
         productType: ProductType!
+        flavors: [Flavor!]!
+        effects: [Effect!]!
     }
 
     input ProductInput {
