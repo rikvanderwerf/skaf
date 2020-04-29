@@ -54,6 +54,14 @@ export class Product extends Model {
     productType = () => {
         return ProductType.findOne()
     }
+
+    _acl = () => {
+        return {
+            'authenticated': ['product.list']
+        }
+    }
+
+    acl = this._acl()
 }
 
 export async function createProduct(productInput) {
@@ -79,7 +87,7 @@ function getProduct(productInput) {
 	})
 }
 
-export const generateProductModel = (user) => ({
+export const generateProductModel = () => ({
     list: (productInput, pageSize, lastPageKey) => {
         return listProducts(createPaginationObject(productInput, pageSize, lastPageKey))
     },

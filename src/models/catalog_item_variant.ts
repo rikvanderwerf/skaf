@@ -1,5 +1,6 @@
-import { Model } from 'sequelize'
+import { Model, BelongsTo } from 'sequelize'
 import { CatalogItem } from './catalog_item'
+import { Price } from './price'
 
 export class CatalogItemVariant extends Model {
     public id!: string
@@ -47,11 +48,28 @@ export class CatalogItemVariant extends Model {
             foreignKey: 'catalog_item_id'
         })
         this.belongsTo(models.Price, {
-            foreignKey: 'price_id'
+            foreignKey: 'price_id',
+            as: 'price'
         })
     }
 
     catalogItem = () => {
         return CatalogItem.findOne()
     }
+
+    price = () => {
+        return Price.findOne()
+    }
 }  
+
+function createCatalogItemVariant(catalogItemVariantInput) {
+    return CatalogItemVariant.create(
+        catalogItemVariantInput
+    )
+}
+
+export const generateCatalogItemVariantModel = () => ({
+    create: (catalogItemVariantInput) => {
+        return createCatalogItemVariant(catalogItemVariantInput)
+    }
+})

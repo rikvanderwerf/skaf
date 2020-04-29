@@ -1,7 +1,7 @@
 import { gql } from 'apollo-server-express'
 
 export const priceSchema = gql`
-    type priceSchema implements BaseSchema {
+    type Price implements BaseSchema {
         id: ID!
 		createdAt: String!
 		updatedAt: String!
@@ -9,7 +9,7 @@ export const priceSchema = gql`
         currency: String!
     }
 
-    input priceInput {
+    input PriceInput {
         priceInCents: Int!
         currency: String!
     }

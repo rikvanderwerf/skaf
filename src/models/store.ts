@@ -27,8 +27,7 @@ export class Store extends Model {
 
     static associate(models) {
         this.hasMany(models.CatalogItem, {
-            foreignKey: 'store_id',
-            as: 'store'
+            foreignKey: 'store_id'
         })
     }
 
@@ -67,7 +66,7 @@ function listStores(storeInput) {
     })
 }
 
-export const generateStoreModel = (user) => ({
+export const generateStoreModel = () => ({
     create: (storeInput) => {
         return createStore(storeInput)
     },

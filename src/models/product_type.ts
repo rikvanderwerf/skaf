@@ -47,7 +47,7 @@ export function createProductType(productTypeInput) {
     return ProductType.create(productTypeInput)
 }
 
-export const generateProductTypeModel = (user) => ({
+export const generateProductTypeModel = () => ({
     list: (productTypeInput) => {
         listProductTypes(productTypeInput)
     }

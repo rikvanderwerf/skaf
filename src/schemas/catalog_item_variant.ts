@@ -1,14 +1,20 @@
 import { gql } from 'apollo-server-express'
 
 export const catalogItemVariantSchema = gql`
-    type cataloItemVariant implements BaseSchema {
+    type CatalogItemVariant implements BaseSchema {
         id: ID!
 		createdAt: String!
 		updatedAt: String!
-        amount: number!
+        amount: Float!
         unit: String!
         priceId: String!
         price: Price!
+    }
+
+    input CatalogItemVariantInput {
+        amount: Float!
+        unit: String!
+        price: PriceInput! 
     }
 `;
 

@@ -32,3 +32,13 @@ export class Price extends Model {
         })
     }
 }
+
+function createPrice(priceInput) {
+    return Price.create(priceInput)
+}
+
+export const generatePriceModel = () => ({
+    create: (priceInput) => {
+        return createPrice(priceInput)
+    }
+})

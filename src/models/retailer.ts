@@ -28,8 +28,7 @@ export class Retailer extends Model {
 
     static associate(models) {
 		this.hasMany(models.Store, {
-			foreignKey: 'retailer_id',
-			as: 'store'
+			foreignKey: 'retailer_id'
 		})
 		this.belongsTo(models.User, {
 			foreignKey: "user_created_id",

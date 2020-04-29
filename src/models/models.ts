@@ -1,4 +1,7 @@
+import { generateCatalogItemModel } from './catalog_item'
+import { generateCatalogItemVariantModel } from './catalog_item_variant'
 import { generateUserModel } from './user'
+import { generatePriceModel } from './price'
 import { generateProductModel } from './product'
 import { generateProductTypeModel } from './product_type'
 import { generateRetailerModel } from './retailer'
@@ -6,10 +9,13 @@ import { generateStoreModel } from './store'
 
 export const generateModels = (user) => {
     return {
-        user: generateUserModel(user),
-        product: generateProductModel(user),
-        productType: generateProductTypeModel(user),
-        retailer: generateRetailerModel(user),
-        store: generateStoreModel(user)
+        catalogItem: generateCatalogItemModel(),
+        catalogItemVariant: generateCatalogItemVariantModel(),
+        store: generateStoreModel(),
+        user: generateUserModel(),
+        price: generatePriceModel(),
+        product: generateProductModel(),
+        productType: generateProductTypeModel(),
+        retailer: generateRetailerModel(user)
     }
 }

@@ -64,9 +64,9 @@ function listUsers(paginationObject) {
 	return User.findAll(paginationObject)
 }
 
-export const generateUserModel = (user) => ({
-	create: (userInput, pageSize, lastPageKey) => {
-		return createUser(createPaginationObject(userInput, pageSize, lastPageKey))
+export const generateUserModel = () => ({
+	create: (userInput) => {
+		return createUser(userInput)
 	},
 	get: (userInput) => {
 		return getUserById(userInput)

@@ -20,7 +20,7 @@ export const storeResolver = {
 		})
 	},
 	Store: {
-		products: async (parent, args, context) => {
+		products: async (parent) => {
 			return parent.getProducts() || []
 		}
 	}
