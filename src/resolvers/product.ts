@@ -1,5 +1,6 @@
 import { resolverConfig } from "../lib/authorization"
 import { productFactory } from "../lib/factories/product"
+import { Product } from "../models/product"
 
 export const productResolver = {
 	Query: {
@@ -17,10 +18,10 @@ export const productResolver = {
 		})
 	},
 	Product: {
-		flavors: async (parent, args, context) => {
+		flavors: async (parent: Product, _, _) => {
 			return parent.getFlavors() || []
 		},
-		effects: async (parent, args, context) => {
+		effects: async (parent: Product, _, _) => {
 			return parent.getEffects() || []
 		} 
 	}

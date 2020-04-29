@@ -1,4 +1,4 @@
-import { Model, BelongsToManyAddAssociationMixin } from 'sequelize'
+import { Model, BelongsToManyAddAssociationMixin, BelongsToManyGetAssociationsMixin } from 'sequelize'
 import { User } from './user'
 import { Flavor } from './flavor'
 import { Effect } from './effect'
@@ -10,7 +10,11 @@ export class Product extends Model {
     public description!: string
 
     public addFlavor!: BelongsToManyAddAssociationMixin<Flavor, Flavor['id']>
+    public getFlavors!: BelongsToManyGetAssociationsMixin<Flavor>
+
     public addEffect!: BelongsToManyAddAssociationMixin<Effect, Effect['id']>
+    public getEffects!: BelongsToManyGetAssociationsMixin<Effect>
+    
 
     static init(sequelize, DataTypes) {
         return super.init.call(this, {
