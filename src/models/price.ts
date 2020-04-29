@@ -3,7 +3,7 @@ import { Model } from 'sequelize'
 export class Price extends Model {
     public id!: string
     public currency!: string
-    public priceIncents!: number
+    public priceIncents!: number 
 
     static init(sequelize, DataTypes) {
         return super.init.call(this,{

@@ -8,7 +8,7 @@ import { createPaginationObject } from '../lib/utils'
 export class Product extends Model {
     public id!: string
     public name!: string
-    public description!: string
+    public productTypeId!: string
 
     public addFlavor!: BelongsToManyAddAssociationMixin<Flavor, Flavor['id']>
     public getFlavors!: BelongsToManyGetAssociationsMixin<Flavor>
@@ -29,9 +29,10 @@ export class Product extends Model {
                 allowNull: false,
                 unique: true
             },
-            product_type_id: {
+            productTypeId: {
                 type: DataTypes.UUID,
                 allowNull: false,
+                field: 'product_type_id'
             }
         }, {
             sequelize: sequelize
@@ -47,9 +48,6 @@ export class Product extends Model {
         })
         this.belongsToMany(models.Effect, {
             through: 'ProductEffects'
-        })
-        this.hasOne(models.Price, {
-            foreignKey: 'price_id'
         })
         this.hasOne(models.ProductType, {
             foreignKey: 'product_type_id'

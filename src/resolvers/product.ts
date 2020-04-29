@@ -23,6 +23,6 @@ export const productResolver = {
 		},
 		effects: async (parent: Product) => {
 			return parent.getEffects() || []
-		} 
+		}
 	}
 }
