@@ -17,9 +17,15 @@ export class CatalogItem extends Model {
                 allowNull: false,
                 unique: false
             },
-            product_id: {
+            productId: {
                 type: DataTypes.UUID,
-                allowNull: false
+                allowNull: false,
+                field: 'product_id'
+            },
+            storeId: {
+                type: DataTypes.UUID,
+                allowNull: false,
+                field: 'store_id'
             }
         }, {
             sequelize: sequelize
@@ -27,8 +33,15 @@ export class CatalogItem extends Model {
     }
 
     static associate(models) {
-        this.hasOne(models.Product, {
+        this.belongsTo(models.Product, {
             foreignKey: 'product_id'
+        })
+        this.belongsTo(models.Store, {
+            foreignKey: 'store_id'
+        })
+        this.hasMany(models.CatalogItemVariant, {
+            foreignKey: 'catalog_item_id',
+            as: 'catalogItem'
         })
     }
 

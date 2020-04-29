@@ -9,11 +9,15 @@ import { User } from '../models/user'
 import { Location } from '../models/location'
 import { Flavor } from '../models/flavor'
 import { Effect } from '../models/effect'
+import { CatalogItem } from '../models/catalog_item'
+import { CatalogItemVariant } from '../models/catalog_item_variant'
 
 export const sequelize: Sequelize = new Sequelize('postgres://login_role:password@postgresql_db:5432/postgres')
 
 const models: object = {
     'Address': Address.init(sequelize, Sequelize),
+    'CatalogItem': CatalogItem.init(sequelize, Sequelize),
+    'CatalogItemVariant': CatalogItemVariant.init(sequelize, Sequelize),
     'Effect': Effect.init(sequelize, Sequelize),
     'Flavor': Flavor.init(sequelize, Sequelize),
     'Location': Location.init(sequelize, Sequelize),

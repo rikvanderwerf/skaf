@@ -40,9 +40,6 @@ export class Product extends Model {
     }
 
     static associate(models) {
-        this.belongsToMany(models.Store, {
-            through: 'StoreProduct'
-        })
         this.belongsToMany(models.Flavor, {
             through: 'ProductFlavor'
         })

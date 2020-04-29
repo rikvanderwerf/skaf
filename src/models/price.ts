@@ -25,4 +25,10 @@ export class Price extends Model {
             sequelize: sequelize
         })
     }
+
+    static associate(models) {
+        this.hasOne(models.CatalogItemVariant, {
+            foreignKey: 'price_id'
+        })
+    }
 }

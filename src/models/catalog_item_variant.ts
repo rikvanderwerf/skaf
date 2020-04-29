@@ -43,10 +43,10 @@ export class CatalogItemVariant extends Model {
     }
 
     static associate(models) {
-        this.hasOne(models.CatalogItem, {
+        this.belongsTo(models.CatalogItem, {
             foreignKey: 'catalog_item_id'
         })
-        this.hasOne(models.Price, {
+        this.belongsTo(models.Price, {
             foreignKey: 'price_id'
         })
     }

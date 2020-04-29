@@ -26,8 +26,9 @@ export class Store extends Model {
     }
 
     static associate(models) {
-        Store.belongsToMany(models.Product, {
-            through: 'StoreProduct'
+        this.hasMany(models.CatalogItem, {
+            foreignKey: 'store_id',
+            as: 'store'
         })
     }
 

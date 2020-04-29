@@ -32,7 +32,7 @@ export class Retailer extends Model {
 			as: 'store'
 		})
 		this.belongsTo(models.User, {
-			"foreignKey": "owner_id",
+			foreignKey: "user_created_id",
 			as: "owner"
 		})
     }

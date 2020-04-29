@@ -11,9 +11,9 @@ export const productResolver = {
 	Mutation: {
 		createProduct: resolverConfig('product.post', productFactory, async (_, args, context) => {
 			const product = await context.models.product.create(args.productInput)
-			if (args.productInput.storeId) {
-				await product.addStore(args.productInput.storeId)
-			}
+			// if (args.productInput.storeId) {
+			// 	await product.addStore(args.productInput.storeId)
+			// }
 			return product
 		})
 	},

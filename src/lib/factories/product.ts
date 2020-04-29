@@ -4,16 +4,16 @@ import { getStoreById } from "../../models/store"
 
 export const productFactory = async (id, args, context) => {
     const _acl = {}
-    if (args.productInput && args.productInput.storeId) {
-        const store = await getStoreById(args.productInput.storeId)
-        const retailer  = await store.retailer()
-        if (retailer.userCreatedId == context.user.id) {
-            const user = `user:${retailer.userCreatedId}`
-            _acl[user] = ['product.post'] 
-        }
-    } else {
-        _acl['authenticated'] = ['product.list']
-    }
+    // if (args.productInput && args.productInput.storeId) {
+    //     const store = await getStoreById(args.productInput.storeId)
+    //     const retailer  = await store.retailer()
+    //     if (retailer.userCreatedId == context.user.id) {
+    //         const user = `user:${retailer.userCreatedId}`
+    //         _acl[user] = ['product.post'] 
+    //     }
+    // } else {
+    _acl['authenticated'] = ['product.list']
+    // }
 
     const model = getProductById(id)
 
