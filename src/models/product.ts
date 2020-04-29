@@ -1,8 +1,9 @@
-import { Model, BelongsToManyAddAssociationMixin, BelongsToManyGetAssociationsMixin, Op } from 'sequelize'
+import { Model, BelongsToManyAddAssociationMixin, BelongsToManyGetAssociationsMixin} from 'sequelize'
 import { User } from './user'
 import { Flavor } from './flavor'
 import { Effect } from './effect'
 import { ProductType } from './product_type'
+import { createPaginationObject } from '../lib/utils'
 
 export class Product extends Model {
     public id!: string
@@ -65,14 +66,8 @@ export async function createProduct(productInput) {
     return product
 }
 
-function listProducts(productInput, pageSize) {
-	return Product.findAll(
-        {
-            where: productInput,
-            limit: pageSize,
-            order: [['id', 'DESC']]
-	    }
-    )
+function listProducts(paginationObject) {
+	return Product.findAll(paginationObject)
 }
 
 export function getProductById(id) {
@@ -91,12 +86,7 @@ function getProduct(productInput) {
 
 export const generateProductModel = (user) => ({
     list: (productInput, pageSize, lastPageKey) => {
-        if (lastPageKey) {
-            productInput['id'] = {
-                [Op.lt]: lastPageKey
-            }
-        }
-        return listProducts(productInput, pageSize)
+        return listProducts(createPaginationObject(productInput, pageSize, lastPageKey))
     },
     get: (productInput) => {
         return getProduct(productInput)

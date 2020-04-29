@@ -1,4 +1,5 @@
 import { Model } from 'sequelize'
+import { createPaginationObject } from '../lib/utils'
 
 export class User extends Model {
 	public id!: string
@@ -59,15 +60,13 @@ export function getUser(userInput) {
 	})
 }
 
-function listUsers(userInput) {
-	return User.findAll({
-		where: userInput
-	})
+function listUsers(paginationObject) {
+	return User.findAll(paginationObject)
 }
 
 export const generateUserModel = (user) => ({
-	create: (userInput) => {
-		return createUser(userInput)
+	create: (userInput, pageSize, lastPageKey) => {
+		return createUser(createPaginationObject(userInput, pageSize, lastPageKey))
 	},
 	get: (userInput) => {
 		return getUserById(userInput)
