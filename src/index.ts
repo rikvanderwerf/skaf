@@ -13,7 +13,7 @@ app.use(express.json())
 
 sequelize.sync()
 
-addStrainstoDatabase()
+// addStrainstoDatabase()
 
 const server = new ApolloServer({
     typeDefs: schema,

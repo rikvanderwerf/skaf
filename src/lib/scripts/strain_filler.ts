@@ -1,7 +1,7 @@
 import { createFlavor } from '../../models/flavor'
-import { createEffect } from '../../models/effect';
-import { createProductType } from '../../models/product_type';
-import { createProduct } from '../../models/product';
+import { createEffect, Effect } from '../../models/effect';
+import { createProductType, ProductType } from '../../models/product_type';
+import { createProduct, Product } from '../../models/product';
 import { productFactory } from '../factories/product';
 
 export const addStrainstoDatabase = async () => {
@@ -18,33 +18,31 @@ export const addStrainstoDatabase = async () => {
     let negativeMap = []
     let medicalMap = [] 
 
-    const strainProductType = await createProductType({
+    const strainProductType: ProductType = await createProductType({
         'name': 'Marijuana strain'
     })
 
-    const hybrid = await createProductType({
+    const hybrid: ProductType = await createProductType({
         'name': 'hybrid',
         'product_type_parent_id': strainProductType.id
     })
-    const indica = await createProductType({
+    const indica: ProductType = await createProductType({
         'name': 'indica',
         'product_type_parent_id': strainProductType.id
     })
-    const sativa = await createProductType({
+    const sativa: ProductType = await createProductType({
         'name': 'sativa',
         'product_type_parent_id': strainProductType.id
     })
     
-    const typeMap = {
+    const typeMap: object = {
         'sativa': sativa.id,
         'hybrid': hybrid.id,
         'indica': indica.id
     }
 
-    console.log(typeMap)
-
     Object.keys(strains).forEach(async key => {
-        const element = strains[key]
+        const element: string = strains[key]
         for (var flavor of element['flavors']) {
             if (flavors.indexOf(flavor) === -1) {
                 flavors.push(flavor)
@@ -54,7 +52,7 @@ export const addStrainstoDatabase = async () => {
                 flavorMap[flavor] = createdFlavor.id
             }
         }
-        const effects = element['effects']
+        const effects: string = element['effects']
         for (var positiveEffect of effects['positive']) {
             if (possitiveEffects.indexOf(positiveEffect) === -1) {
                 possitiveEffects.push(positiveEffect)
@@ -78,7 +76,7 @@ export const addStrainstoDatabase = async () => {
         for (var medicalEffect of effects['medical']) {
             if (medicalEffects.indexOf(medicalEffect) === -1) {
                 medicalEffects.push(medicalEffect)
-                const createdEffect = await createEffect({
+                const createdEffect: Effect = await createEffect({
                     type: 'medical',
                     effect: medicalEffect
                 })
@@ -86,7 +84,7 @@ export const addStrainstoDatabase = async () => {
             }
         }
 
-        const product = await createProduct({
+        const product: Product = await createProduct({
             name: key,
             product_type_id: typeMap[element['race']]
         })
@@ -103,18 +101,6 @@ export const addStrainstoDatabase = async () => {
         for (var medicalEffect of effects['medical']) {
             product.addEffect(medicalMap[medicalEffect])   
         }
-
-
-    // });
-
-    console.log(flavors)
-    console.log(possitiveEffects)
-    console.log(negativeEffects)
-    console.log(medicalEffects)
-
-
-
-
-
+    });
 }
 
