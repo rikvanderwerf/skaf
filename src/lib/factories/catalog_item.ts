@@ -9,7 +9,7 @@ export const catalogItemFactory = async (id, args, context) => {
         const store = await getStoreById(args.catalogItemInput.storeId)
         const retailer  = await store.retailer()
         const retailerUsers = await retailer.getRetailerUsers()
-        if (retailerUsers.filter(retailerUser => retailerUser.userId == context.user.id).length > 0) {
+        if (retailerUsers.filter(retailerUser => retailerUser.userId == context.user.id && retailerUser.role == 'admin').length > 0) {
             const user = `user:${context.user.id}`
             _acl[user] = ['catalogItem.post'] 
         }
