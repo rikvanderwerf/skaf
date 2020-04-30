@@ -8,8 +8,9 @@ export const catalogItemFactory = async (id, args, context) => {
     if (args.catalogItemInput && args.catalogItemInput.storeId) {
         const store = await getStoreById(args.catalogItemInput.storeId)
         const retailer  = await store.retailer()
-        if (retailer.userCreatedId == context.user.id) {
-            const user = `user:${retailer.userCreatedId}`
+        const retailerUsers = await retailer.getRetailerUsers()
+        if (retailerUsers.filter(retailerUser => retailerUser.userId == context.user.id).length > 0) {
+            const user = `user:${context.user.id}`
             _acl[user] = ['catalogItem.post'] 
         }
     }
