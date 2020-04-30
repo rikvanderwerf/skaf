@@ -1,9 +1,11 @@
-import { Model } from 'sequelize'
+import { Model, HasManyGetAssociationsMixin } from 'sequelize'
+import { RetailerUser } from './retailer_users'
 
 export class Retailer extends Model {
 	public id!: string 
 	public name!: string
-	public userCreatedId!: string
+
+	public getRetailerUsers!: HasManyGetAssociationsMixin<RetailerUser>
 
 	static init(sequelize, DataTypes) {
         return super.init.call(this, {
@@ -15,36 +17,28 @@ export class Retailer extends Model {
 			name: {
 				type: DataTypes.STRING,
 				allowNull: false
-			},
-			userCreatedId: {
-				type: DataTypes.UUID,
-				allowNull: false,
-				field: "user_created_id",
 			}
 		}, {
-			sequelize: sequelize
-		})
-    }
+				sequelize: sequelize
+			})
+		}
 
     static associate(models) {
 		this.hasMany(models.Store, {
 			foreignKey: 'retailer_id'
-		})
-		this.belongsTo(models.User, {
-			foreignKey: "user_created_id",
-			as: "owner"
 		})
 		this.hasMany(models.RetailerUser, {
 			foreignKey: 'retailer_id'
 		})
     }
 
-	_acl = () => {
-		const user = `user:${this.userCreatedId}`
-        return {
-            user : ['retailer.put']
-        }
-    }
+	_acl = async () => {
+		const acl = {}
+		const users = await this.getRetailerUsers()
+		users.forEach(retailerUser => acl[`user:${retailerUser.userId}`] = ['retailer.put']) 
+		
+		return acl    
+	}
 
 	acl = this._acl()
 }

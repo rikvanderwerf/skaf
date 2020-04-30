@@ -36,12 +36,12 @@ export class Store extends Model {
     }
 
     _acl = async() => {
+        const acl = {}
         const retailer = await this.retailer()
-        const user = `user:${retailer.userCreatedId}`
-
-        return {
-            user : ['store.put']
-        }
+        const users = await retailer.getRetailerUsers()
+        users.forEach(retailerUser => acl[`user:${retailerUser.userId}`] = ['store.put']) 
+        
+        return acl
     }
 
     acl = this._acl()

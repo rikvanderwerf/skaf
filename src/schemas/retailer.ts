@@ -5,7 +5,6 @@ export const retailerSchema = gql`
 		id: ID!
 		name: String!
 		stores: [Store!]
-		userCreatedId: ID!
 		createdAt: String!
 		updatedAt: String!
 	}
