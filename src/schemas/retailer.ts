@@ -14,5 +14,3 @@ export const retailerSchema = gql`
 		name: String!
 	}
 `
-
-exports.retailerSchema = retailerSchema

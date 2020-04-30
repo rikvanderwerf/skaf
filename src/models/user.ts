@@ -39,6 +39,9 @@ export class User extends Model {
 			foreignKey: "owner_id",
 			as: "retailers"
 		})
+		this.hasMany(models.RetailerUser, {
+			foreignKey: 'user_id'
+		})
 	}
 }
 

@@ -5,6 +5,7 @@ import { Address } from '../models/address'
 import { Price } from '../models/price'
 import { ProductType } from '../models/product_type'
 import { Retailer } from '../models/retailer'
+import { RetailerUser } from '../models/retailer_users'
 import { User } from '../models/user'
 import { Location } from '../models/location'
 import { Flavor } from '../models/flavor'
@@ -25,6 +26,7 @@ const models: object = {
     'Product': Product.init(sequelize, Sequelize),
     'ProductType': ProductType.init(sequelize, Sequelize),
     'Retailer': Retailer.init(sequelize, Sequelize),
+    'RetailerUser': RetailerUser.init(sequelize, Sequelize),
     'Store': Store.init(sequelize, Sequelize),
     'User': User.init(sequelize, Sequelize)
 }

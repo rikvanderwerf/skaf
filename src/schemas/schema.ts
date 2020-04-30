@@ -8,6 +8,7 @@ import { priceSchema } from './price'
 import { productSchema } from './product'
 import { productTypeSchema } from './product_type'
 import { retailerSchema } from './retailer'
+import { retailerUserSchema } from './retailer_user'
 import { storeSchema } from './store'
 import { userSchema } from './user'
 import { effectSchema } from './effect'
@@ -76,6 +77,7 @@ export const schema = [
 	productSchema,
 	productTypeSchema,
 	retailerSchema,
+	retailerUserSchema,
 	rootMutation,
 	rootQuery,
 	storeSchema,

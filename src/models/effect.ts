@@ -13,7 +13,8 @@ export class Effect extends Model {
                 defaultValue: DataTypes.UUIDV4
             },
             type: {
-                type: DataTypes.ENUM(['positive', 'negative', 'medical'])
+                type: DataTypes.ENUM(['positive', 'negative', 'medical']),
+                allowNull: false
             },
             effect: {
                 type: DataTypes.STRING,

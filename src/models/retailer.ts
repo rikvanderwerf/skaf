@@ -34,6 +34,9 @@ export class Retailer extends Model {
 			foreignKey: "user_created_id",
 			as: "owner"
 		})
+		this.hasMany(models.RetailerUser, {
+			foreignKey: 'retailer_id'
+		})
     }
 
 	_acl = () => {

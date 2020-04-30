@@ -12,7 +12,13 @@ export const retailerResolver = {
 	},
 	Mutation: {
 		createRetailer: resolverConfig('retailer.post', retailerFactory, async (_, args, context) => {
-			return await context.models.retailer.create(args.retailerInput)
+			const retailer = await context.models.retailer.create(args.retailerInput)
+			const retailerUser = await context.models.retailerUser.create({
+				userId: context.user.id,
+				retailerId: retailer.id,
+				role: 'admin'
+			})
+			return retailer
 		}),
 		updateRetailer: resolverConfig('retailer.put', retailerFactory, async (_, args, context) => {
 			return context.model.update(args.retailerInput)
