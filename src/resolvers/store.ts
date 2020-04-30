@@ -20,8 +20,8 @@ export const storeResolver = {
 		})
 	},
 	Store: {
-		products: async (parent) => {
-			return parent.getProducts() || []
+		catalogItems: async (parent) => {
+			return parent.getCatalogItems() || []
 		}
 	}
 }
