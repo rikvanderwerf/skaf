@@ -4,7 +4,7 @@ import { getStoreById } from "../../models/store"
 
 export const catalogItemFactory = async (id, args, context) => {
     const _acl = {}
-    console.log(args.catalogItemInput)
+
     if (args.catalogItemInput && args.catalogItemInput.storeId) {
         const store = await getStoreById(args.catalogItemInput.storeId)
         const retailer  = await store.retailer()

@@ -47,7 +47,7 @@ function createRetailer(retailerInput) {
     return Retailer.create(retailerInput)
 }
 
-export function getRetailer(id) {
+export function getRetailerById(id) {
 	return Retailer.findOne({
 		where:{
 			id: id
@@ -67,7 +67,7 @@ export const generateRetailerModel = (user) => ({
 		return createRetailer(retailerInput)
 	},
 	get: (retailerInput) => {
-		return getRetailer(retailerInput)
+		return getRetailerById(retailerInput.id)
 	},
 	list: (retailerInput) => {
 		return listRetailers(retailerInput)

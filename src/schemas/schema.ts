@@ -47,6 +47,9 @@ const rootMutation = gql`
 		createRetailer(retailerInput: RetailerInput): Retailer!
 		updateRetailer(id: ID, retailerInput: RetailerInput): Retailer!
 
+		# retailer user
+		createRetailerUser(retailerUserInput: RetailerUserInput): RetailerUser!
+
 		# store
 		createStore(storeInput: StoreInput): Store!
 		updateStore(id: ID, storeInput: StoreInput): Store!
