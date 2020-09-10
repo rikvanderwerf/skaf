@@ -1,0 +1,39 @@
+version: '3.7'
+services: 
+  skaf:
+    container_name: skaf
+    depends_on: 
+      - "postgresql_db"
+    image: skaf:dev
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      POSTGRES_HOST: postgresql_db
+      POSTGRES_USER: login_role
+      POSTGRES_PASSWORD: password
+    ports:
+      - "4000:4000"
+    volumes:    
+      - .:/home/skaf
+    command: ["./wait-for-it.sh", "npm", "start"] 
+    networks: 
+      - skafnetwork
+  postgresql_db:
+    container_name: postgresql_db 
+    image: postgresql:skaf
+    environment:
+      POSTGRES_HOST: postgresql:5432
+      POSTGRES_USER: login_role
+      POSTGRES_PASSWORD: password
+    # volumes:
+    #  - ./pgdata:/var/lib/postgresql/data
+    ports: 
+      - "5432:5432"
+    networks:
+      - skafnetwork
+networks:
+  skafnetwork:
+    driver: bridge 
+
+
